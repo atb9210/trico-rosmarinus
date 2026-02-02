@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trico Rosmarinus - Rivitalizza i Tuoi Capelli Naturalmente</title>
+    <meta name="description" content="La soluzione naturale per capelli più forti e sani. Formula con Rosmarino, Fieno Greco e Arginina.">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Trico Rosmarinus - Rivitalizza i Tuoi Capelli">
+    <meta property="og:description" content="La sinergia naturale di Rosmarino e Fieno Greco incontra la scienza dell'Arginina">
+    <meta property="og:type" content="website">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        
+        <!-- CSS -->
+    <style>
+        /* Color Palette - Enhanced Contrast */
+        :root {
+            --primary: #2D5A46;
+            --primary-light: #3D7B5F;
+            --primary-dark: #1F3D2F;
+            --accent: #8FBC8F;
+            --cream: #FDFBF7;
+            --warm-white: #FAF9F6;
+            --text-primary: #1A2E1C;
+            --text-secondary: #4A5A4C;
+            --text-muted: #7A8A7C;
+            --border: #D4DAD4;
+            --shadow-soft: 0 2px 12px rgba(45, 90, 70, 0.08);
+            --shadow-medium: 0 4px 20px rgba(45, 90, 70, 0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background-color: var(--warm-white);
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        @media (min-width: 1440px) {
+            .container {
+                padding: 0 40px;
+            }
+        }
+
+        /* Hero Section - Clean & Minimal */
+        .hero {
+            background: var(--cream);
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+            line-height: 1.2;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero .sub-headline {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 50px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 400;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            text-align: left;
+            margin-top: 50px;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .hero-image-placeholder {
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-image-placeholder p {
+            display: none;
+        }
+
+        .benefits-list {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+
+        .benefits-list li {
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 1rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+        }
+
+        .benefits-list li:last-child {
+            border-bottom: none;
+        }
+
+        .benefits-list .icon {
+            color: var(--primary);
+            margin-right: 16px;
+            font-size: 1.1rem;
+            min-width: 24px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 16px 40px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .social-proof {
+            margin-top: 50px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .rating {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .rating i {
+            color: #E5B94C;
+        }
+
+        .trust-badges {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .trust-badge {
+            background: transparent;
+            padding: 8px 0;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .trust-badge i {
+            margin-right: 8px;
+            color: var(--primary);
+        }
+
+        /* Problem/Solution Section */
+        .problem-solution {
+            padding: 80px 0;
+            background: var(--warm-white);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.6rem;
+            color: var(--text-primary);
+            text-align: center;
+            margin-bottom: 60px;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 50px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .problem-box, .solution-box {
+            background: white;
+            padding: 32px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--border);
+        }
+
+        .problem-box {
+            border-top: 3px solid #D4A373;
+        }
+
+        .solution-box {
+            border-top: 3px solid var(--primary);
+        }
+
+        .problem-box h3, .solution-box h3 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .problem-box p, .solution-box p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .section-image {
+            width: 100%;
+            border-radius: 12px;
+            margin-top: 24px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .problem-content p[style], .solution-content p[style] {
+            display: none;
+        }
+
+        /* Ingredients Section */
+        .ingredients {
+            padding: 80px 0;
+            background: var(--cream);
+        }
+
+        .ingredients > .container > img {
+            display: block;
+            max-width: 500px;
+            margin: 0 auto 60px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .ingredients > .container > p[style] {
+            display: none;
+        }
+
+        .ingredients-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .ingredient-card {
+            background: white;
+            padding: 32px 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .ingredient-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .ingredient-icon {
+            font-size: 2rem;
+            margin-bottom: 16px;
+            color: var(--primary);
+        }
+
+        .ingredient-card h3 {
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .ingredient-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 80px 0;
+            background: var(--warm-white);
+        }
+
+        .benefits > .container > img {
+            display: block;
+            max-width: 600px;
+            margin: 0 auto 60px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .benefits > .container > p[style] {
+            display: none;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 32px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            box-shadow: var(--shadow-medium);
+        }
+
+        .benefit-card h3 {
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .benefit-card h3 i {
+            color: var(--primary);
+            margin-right: 10px;
+        }
+
+        .benefit-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background: var(--cream);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .whatsapp-testimonials {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 20px;
+        }
+
+        .whatsapp-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .whatsapp-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--border);
+        }
+
+        .testimonial-avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            object-fit: cover;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+
+        .testimonial-rating {
+            color: #E5B94C;
+            margin-bottom: 16px;
+            font-size: 1rem;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 80px 0;
+            background: var(--warm-white);
+        }
+
+        .faq .container {
+            max-width: 800px;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 16px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--border);
+        }
+
+        .faq-question {
+            padding: 20px 24px;
+            background: white;
+            color: var(--text-primary);
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: var(--cream);
+        }
+
+        .faq-answer {
+            padding: 0 24px 24px;
+            display: none;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            padding: 80px 0;
+            background: var(--primary);
+            text-align: center;
+            color: white;
+        }
+
+        .final-cta h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.4rem;
+            margin-bottom: 32px;
+            font-weight: 600;
+        }
+
+        .final-cta img {
+            max-width: 280px;
+            margin: 0 auto 40px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .final-cta p[style*="color: rgba"] {
+            display: none;
+        }
+
+        .final-cta h3 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 32px;
+            opacity: 0.9;
+        }
+
+        .final-cta .cta-button {
+            background: white;
+            color: var(--primary);
+            font-size: 1.1rem;
+            padding: 18px 48px;
+        }
+
+        .final-cta .cta-button:hover {
+            background: var(--cream);
+            transform: translateY(-2px);
+        }
+
+        .final-cta > .container > p:last-of-type {
+            margin-top: 24px;
+            opacity: 0.85;
+            font-size: 1rem;
+        }
+
+        .urgency-badge {
+            background: rgba(255,255,255,0.15);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 24px;
+            display: inline-block;
+            margin-bottom: 24px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-primary);
+            color: white;
+            padding: 48px 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            margin-bottom: 24px;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            margin: 0 16px;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer p {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.85rem;
+        }
+
+        /* Form Styles */
+        .order-form {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-medium);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+            background: var(--warm-white);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: white;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .price-display {
+            text-align: center;
+            margin-bottom: 32px;
+            padding: 24px;
+            background: var(--cream);
+            border-radius: 12px;
+        }
+
+        .price-display .original-price {
+            font-size: 1.4rem;
+            color: var(--text-muted);
+            text-decoration: line-through;
+            margin-bottom: 4px;
+        }
+
+        .price-display .discount-badge {
+            display: inline-block;
+            background: #E57373;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .price-display .price {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.8rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .price-display .payment-method {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-top: 12px;
+        }
+
+        .price-display .payment-method i {
+            color: var(--primary);
+            margin-right: 8px;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 18px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .form-submit:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .form-submit:disabled {
+            background: var(--text-muted);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .form-error {
+            color: #E57373;
+            font-size: 0.9rem;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .form-group.error input,
+        .form-group.error textarea {
+            border-color: #E57373;
+        }
+
+        .form-group.error .form-error {
+            display: block;
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .success-message i {
+            font-size: 4rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .success-message h3 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.8rem;
+            margin-bottom: 16px;
+        }
+
+        .success-message p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .ingredients-grid,
+            .benefits-grid,
+            .testimonial-grid,
+            .whatsapp-testimonials {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .nav-menu {
+                gap: 24px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero {
+                padding: 100px 0 60px;
+            }
+            
+            .two-column {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .social-proof {
+                flex-direction: column;
+                gap: 16px;
+            }
+            
+            .trust-badges {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .ingredients-grid,
+            .benefits-grid,
+            .testimonial-grid,
+            .whatsapp-testimonials {
+                grid-template-columns: 1fr;
+            }
+
+            .final-cta h2 {
+                font-size: 1.8rem;
+            }
+
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--cream);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: var(--shadow-medium);
+                gap: 16px;
+                border-radius: 0 0 12px 12px;
+                border: 1px solid var(--border);
+                border-top: none;
+            }
+
+            .nav-menu.active {
+                display: flex !important;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Header Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(253, 251, 247, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary);
+        }
+
+        .cta-button-small {
+            background: var(--primary);
+            color: #ffffff !important;
+            padding: 8px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button-small:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-toggle:hover {
+            background: var(--cream);
+        }
+
+        .mobile-menu-toggle i {
+            font-size: 1.5rem;
+        }
+
+        /* Hide mobile menu by default */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none !important;
+            }
+        }
+
+        /* Sticky CTA */
+        .sticky-cta {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 1000;
+            display: none;
+        }
+
+        .sticky-cta .cta-button {
+            padding: 14px 28px;
+            font-size: 0.95rem;
+            box-shadow: var(--shadow-medium);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">
+                    <i class="fas fa-leaf"></i>
+                    <span>Trico Rosmarinus</span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#benefits">Benefici</a></li>
+                    <li><a href="#ingredients">Ingredienti</a></li>
+                    <li><a href="#testimonials">Recensioni</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#order" class="cta-button-small">Acquista</a></li>
+                </ul>
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Ritrova la Forza di una Chioma Folta e Resistente con Trico Rosmarinus</h1>
+            <p class="sub-headline">La sinergia naturale di Rosmarino e Fieno Greco incontra la scienza dell'Arginina. Una lozione "urto" progettata per risvegliare i tuoi bulbi piliferi e fermare la fragilità.</p>
+            
+            <div class="hero-image-placeholder">
+                <img src="images/hero-shot-3d.jpg" alt="Trico Rosmarinus Hero Shot" class="hero-image">
+            </div>
+
+            <ul class="benefits-list">
+                <li><i class="fas fa-fire icon"></i> Effetto Termo-Attivo: Stimola istantaneamente la microcircolazione</li>
+                <li><i class="fas fa-shield-alt icon"></i> Azione Anti-Caduta: Contrasta il diradamento e rinforza la radice</li>
+                <li><i class="fas fa-leaf icon"></i> Formula Botanica Avanzata: Con Rosmarino, Fieno Greco e Pantenolo</li>
+                <li><i class="fas fa-star icon"></i> Volume Immediato: Capelli visibilmente più densi e corposi dopo l'uso</li>
+            </ul>
+
+            <button class="cta-button" onclick="handlePurchase()">ACQUISTA ORA E TRASFORMA I TUOI CAPELLI</button>
+
+            <div class="social-proof">
+                <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> Oltre 5.000 clienti hanno già scelto Trico Rosmarinus</div>
+                <div class="trust-badges">
+                    <span class="trust-badge"><i class="fas fa-lock"></i> Pagamento Sicuro</span>
+                    <span class="trust-badge"><i class="fas fa-shipping-fast"></i> Spedizione Rapida</span>
+                    <span class="trust-badge"><i class="fas fa-flag"></i> Prodotto in Italia</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem/Solution Section -->
+    <section class="problem-solution">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-exclamation-triangle"></i> Il Problema e La Soluzione</h2>
+            
+            <div class="two-column">
+                <div class="problem-content">
+                    <div class="problem-box">
+                        <h3>Il Problema</h3>
+                        <p>Vedi troppi capelli sulla spazzola? La tua chioma appare spenta, piatta e priva di vita? La caduta dei capelli e la fragilità non sono solo un problema estetico, ma un segnale che i tuoi bulbi piliferi hanno bisogno di nutrimento e stimolazione.</p>
+                    </div>
+                    <img src="images/problema-caduta.jpg" alt="Problema Caduta Capelli" class="section-image">
+                    <p style="font-size: 0.8rem; color: var(--gray-medium);">
+                        PROMPT: Immagine ravvicinata con colori desaturati, spazzola piena di capelli caduti, mano preoccupata.
+                    </p>
+                </div>
+
+                <div class="solution-content">
+                    <div class="solution-box">
+                        <h3>La Soluzione: Trico Rosmarinus</h3>
+                        <p>Non una semplice lozione, ma un vero trattamento coadiuvante cosmetico. Grazie alla sua formula bifasica tra natura e scienza, Trico Rosmarinus agisce direttamente dove il capello nasce. L'effetto calore unico del Metil Nicotinato "apre la strada" ai nutrienti, garantendo che ogni goccia di Rosmarino e Arginina arrivi dritta al cuore del problema.</p>
+                    </div>
+                    <img src="images/soluzione-applicazione.jpg" alt="Soluzione Trico Rosmarinus" class="section-image">
+                    <p style="font-size: 0.8rem; color: var(--gray-medium);">
+                        PROMPT: Immagine luminosa e dai toni caldi, persona che massaggia cuoio capelluto con espressione benessere.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ingredients Section -->
+    <section class="ingredients">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-flask"></i> Il Segreto della nostra Formula Naturale</h2>
+            
+            <img src="images/ingredienti-flatlay.jpg" alt="Composizione Ingredienti" style="width: 100%; max-width: 600px; margin: 0 auto 50px; border-radius: 15px;">
+            <p style="font-size: 0.8rem; color: var(--gray-medium); text-align: center; margin-bottom: 30px;">
+                PROMPT: Immagine stile "flat lay" pulita su sfondo bianco/verde salvia. Flacone al centro con ingredienti reali ai lati: rosmarino, semi fieno greco, molecola arginina, goccia pantenolo.
+            </p>
+
+            <div class="ingredients-grid">
+                <div class="ingredient-card fade-in">
+                    <div class="ingredient-icon"><i class="fas fa-leaf"></i></div>
+                    <h3>Rosmarino</h3>
+                    <p>Il "motore" della crescita. Purifica il cuoio capelluto e stimola la circolazione per capelli più sani.</p>
+                </div>
+
+                <div class="ingredient-card fade-in">
+                    <div class="ingredient-icon"><i class="fas fa-seedling"></i></div>
+                    <h3>Fieno Greco</h3>
+                    <p>Un antico rimedio per dare volume e forza. Ricco di fitoestrogeni, aiuta a contrastare il diradamento.</p>
+                </div>
+
+                <div class="ingredient-card fade-in">
+                    <div class="ingredient-icon"><i class="fas fa-dna"></i></div>
+                    <h3>Arginina</h3>
+                    <p>L'amminoacido essenziale che ricostruisce il capello. Favorisce l'afflusso di nutrienti al bulbo pilifero.</p>
+                </div>
+
+                <div class="ingredient-card fade-in">
+                    <div class="ingredient-icon"><i class="fas fa-tint"></i></div>
+                    <h3>Pantenolo</h3>
+                    <p>Pro-Vitamina B5 per idratazione profonda. Dona lucentezza e protegge il fusto dalle aggressioni esterne.</p>
+                </div>
+
+                <div class="ingredient-card fade-in">
+                    <div class="ingredient-icon"><i class="fas fa-fire"></i></div>
+                    <h3>Metil Nicotinato</h3>
+                    <p>Crea l'effetto calore necessario per "attivare" la cute e massimizzare l'assorbimento degli attivi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-check-circle"></i> Perché scegliere Trico Rosmarinus?</h2>
+            
+            <img src="images/risultato-lifestyle.jpg" alt="Risultati Trico Rosmarinus" style="width: 100%; max-width: 600px; margin: 0 auto 50px; border-radius: 15px;">
+            <p style="font-size: 0.8rem; color: var(--gray-medium); text-align: center; margin-bottom: 30px;">
+                PROMPT: Ritratto persona con capelli sani e voluminosi che sorride verso luce sole. Trasmette fiducia e salute.
+            </p>
+
+            <div class="benefits-grid">
+                <div class="benefit-card fade-in">
+                    <h3><i class="fas fa-bullseye"></i> Risultati Visibili, Non Promesse</h3>
+                    <p>Sentirai la lozione agire fin dal primo secondo grazie al leggero pizzicore benefico.</p>
+                </div>
+
+                <div class="benefit-card fade-in">
+                    <h3><i class="fas fa-dumbbell"></i> Capelli più Resistenti</h3>
+                    <p>Ideale nei cambi di stagione o in periodi di forte stress fisico.</p>
+                </div>
+
+                <div class="benefit-card fade-in">
+                    <h3><i class="fas fa-rocket"></i> Formula non Untuosa</h3>
+                    <p>Si applica e si asciuga rapidamente. Non appesantisce i capelli, lasciandoli pronti per lo styling.</p>
+                </div>
+
+                <div class="benefit-card fade-in">
+                    <h3><i class="fas fa-home"></i> Trattamento Professionale a Casa</h3>
+                    <p>La qualità della tricologia professionale nel pratico formato da 75ml.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">Cosa dicono i nostri clienti</h2>
+            
+            <div class="whatsapp-testimonials">
+                <div class="whatsapp-card fade-in">
+                    <img src="images/testimonianza-luca.png" alt="Testimonianza Luca M.">
+                </div>
+                <div class="whatsapp-card fade-in">
+                    <img src="images/testimonianza-sara.png" alt="Testimonianza Sara L.">
+                </div>
+                <div class="whatsapp-card fade-in">
+                    <img src="images/testimonianza-giulia.png" alt="Testimonianza Giulia P.">
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <span class="trust-badge" style="background: var(--primary); color: white;">100% Soddisfatti o Rimborsati</span>
+                <span class="trust-badge" style="background: var(--primary); color: white;">Garanzia di Qualità</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-question-circle"></i> Domande Frequenti</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Sento calore e vedo un leggero rossore, è normale?</span>
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Assolutamente sì! È l'effetto del Metil Nicotinato che attiva la microcircolazione. Scomparirà in pochi minuti.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Posso usarlo tutti i giorni?</span>
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Sì, si consiglia l'applicazione costante sulla zona interessata per massimizzare i benefici.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Sporca i capelli?</span>
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>No, la lozione è formulata per assorbirsi velocemente senza lasciare residui grassi.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Va bene sia per uomo che per donna?</span>
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Certamente, la formula è efficace su ogni tipo di cuoio capelluto.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta">
+        <div class="container">
+            <div class="urgency-badge"><i class="fas fa-clock"></i> OFFERTA A TEMPO LIMITATO</div>
+            <h2>Non aspettare che sia troppo tardi. Restituisci vita ai tuoi capelli oggi.</h2>
+            
+            <img src="images/packshot-clean.jpg" alt="Packshot Trico Rosmarinus" style="max-width: 300px; margin: 30px auto; border-radius: 15px;">
+            <p style="font-size: 0.8rem; color: rgba(255,255,255,0.8); text-align: center;">
+                PROMPT: Foto studio minimalista flacone su sfondo bianco/grigio chiarissimo con leggera ombra riflessa.
+            </p>
+
+            <h3 style="font-size: 1.2rem; font-weight: 400; margin-bottom: 32px; opacity: 0.9;">Acquista ora Trico Rosmarinus 75ml</h3>
+            
+            <form class="order-form" id="orderForm" onsubmit="handleOrderSubmit(event)">
+                <div class="urgency-badge" style="background: #E57373; color: white; padding: 10px 24px; border-radius: 24px; display: inline-block; margin-bottom: 24px; font-weight: 600; font-size: 0.9rem; border: none;">
+                    <i class="fas fa-clock"></i> OFFERTA TRA: <span id="countdownTimer">23h 57m 54s</span>
+                </div>
+                
+                <div class="price-display" style="margin-bottom: 32px;">
+                    <div class="discount-badge">-40% SCONTO</div>
+                    <div class="original-price">€33,00</div>
+                    <div class="price">€19,99</div>
+                    <div class="payment-method"><i class="fas fa-truck"></i> Pagamento alla consegna</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="fullName">Nome e Cognome *</label>
+                    <input type="text" id="fullName" name="fullName" placeholder="Il tuo nome completo" required>
+                    <div class="form-error">Inserisci il tuo nome completo</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Telefono *</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Il tuo numero di telefono" required>
+                    <div class="form-error">Inserisci il tuo numero di telefono</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="address">Indirizzo completo *</label>
+                    <textarea id="address" name="address" placeholder="Via, numero civico, città, CAP" required></textarea>
+                    <div class="form-error">Inserisci il tuo indirizzo completo</div>
+                </div>
+                
+                <button type="submit" class="form-submit">ORDINA ORA - PAGA ALLA CONSEGNA</button>
+            </form>
+            
+            <div class="success-message" id="successMessage">
+                <i class="fas fa-check-circle"></i>
+                <h3>Ordine Confermato!</h3>
+                <p>Grazie per il tuo ordine. Riceverai Trico Rosmarinus 75ml entro 24/48 ore con pagamento alla consegna.</p>
+            </div>
+            
+            <p style="margin-top: 24px; opacity: 0.85; font-size: 1rem;">Soddisfazione garantita. I tuoi capelli ti ringrazieranno.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Termini e Condizioni</a>
+                <a href="#">Resi e Rimborsi</a>
+            </div>
+            <p>Contatti: info@tricosolutions.it | Assistenza Clienti</p>
+            <p style="font-size: 0.9rem; margin-top: 15px; opacity: 0.8;">
+                Coadiuvante cosmetico nei trattamenti anticaduta. I risultati possono variare da persona a persona.<br>
+                Pagamenti Sicuri via Stripe, PayPal, Carta di Credito.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Sticky CTA Button -->
+    <div class="sticky-cta" id="stickyCTA">
+        <button class="cta-button" onclick="handlePurchase()">ACQUISTA ORA</button>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const navMenu = document.querySelector('.nav-menu');
+            navMenu.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.nav-menu').classList.remove('active');
+            });
+        });
+
+        // Handle Purchase Click - Scroll to form
+        function handlePurchase() {
+            const formSection = document.querySelector('.final-cta');
+            formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            
+            // Focus on first input
+            setTimeout(() => {
+                document.getElementById('fullName').focus();
+            }, 500);
+        }
+
+        // Handle Order Form Submit
+        function handleOrderSubmit(event) {
+            event.preventDefault();
+            
+            const form = document.getElementById('orderForm');
+            const fullName = document.getElementById('fullName').value;
+            const address = document.getElementById('address').value;
+            const phone = document.getElementById('phone').value;
+            
+            // Validation
+            let isValid = true;
+            
+            if (!fullName.trim()) {
+                document.getElementById('fullName').parentElement.classList.add('error');
+                isValid = false;
+            } else {
+                document.getElementById('fullName').parentElement.classList.remove('error');
+            }
+            
+            if (!address.trim()) {
+                document.getElementById('address').parentElement.classList.add('error');
+                isValid = false;
+            } else {
+                document.getElementById('address').parentElement.classList.remove('error');
+            }
+            
+            if (!phone.trim()) {
+                document.getElementById('phone').parentElement.classList.add('error');
+                isValid = false;
+            } else {
+                document.getElementById('phone').parentElement.classList.remove('error');
+            }
+            
+            if (!isValid) return;
+            
+            // Prepare order data
+            const orderData = {
+                fullName: fullName.trim(),
+                address: address.trim(),
+                phone: phone.trim(),
+                product: 'Trico Rosmarinus 75ml',
+                price: '19.99',
+                paymentMethod: 'Pagamento alla consegna',
+                timestamp: new Date().toISOString()
+            };
+            
+            console.log('Ordine inviato:', orderData);
+            
+            // Placeholder for API integration
+            // Future: fetch('/api/orders', {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify(orderData)
+            // });
+            
+            // Show success message
+            form.style.display = 'none';
+            document.querySelector('.price-display').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // Track conversion
+            trackEvent('order_submitted', {
+                product: 'Trico Rosmarinus 75ml',
+                price: '19.99',
+                payment_method: 'cash_on_delivery'
+            });
+        }
+
+        // FAQ Toggle
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            const plusSign = element.querySelector('span:last-child');
+            
+            faqItem.classList.toggle('active');
+            plusSign.textContent = faqItem.classList.contains('active') ? '-' : '+';
+        }
+
+        // Fade In Animation on Scroll
+        function handleScrollAnimation() {
+            const elements = document.querySelectorAll('.fade-in');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Sticky CTA Show/Hide
+        function handleStickyCTA() {
+            const stickyCTA = document.getElementById('stickyCTA');
+            const heroSection = document.querySelector('.hero');
+            const heroBottom = heroSection.getBoundingClientRect().bottom;
+            
+            if (heroBottom < 0) {
+                stickyCTA.style.display = 'block';
+            } else {
+                stickyCTA.style.display = 'none';
+            }
+        }
+
+        // Countdown Timer (for urgency)
+        function startCountdown() {
+            // Set the time for 24 hours from now
+            const timeLimit = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+            const endTime = Date.now() + timeLimit;
+            
+            function updateTimer() {
+                const now = Date.now();
+                const timeLeft = endTime - now;
+                
+                if (timeLeft <= 0) {
+                    const countdownEl = document.getElementById('countdownTimer');
+                    if (countdownEl) {
+                        countdownEl.innerHTML = 'OFFERTA IN SCADENZA';
+                    }
+                    return;
+                }
+                
+                const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                
+                const countdownEl = document.getElementById('countdownTimer');
+                if (countdownEl) {
+                    countdownEl.innerHTML = `${hours}h ${minutes}m ${seconds}s`;
+                }
+            }
+            
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Start animations
+            handleScrollAnimation();
+            handleStickyCTA();
+            startCountdown();
+            
+            // Event listeners
+            window.addEventListener('scroll', function() {
+                handleScrollAnimation();
+                handleStickyCTA();
+            });
+            
+            // Smooth scroll for any anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Add loading animation to CTA buttons
+            document.querySelectorAll('.cta-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                });
+            });
+        });
+
+        // Performance optimization - Lazy loading images
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('img');
+            
+            images.forEach(img => {
+                if (img.complete) {
+                    img.style.opacity = '1';
+                } else {
+                    img.onload = function() {
+                        img.style.opacity = '1';
+                    };
+                }
+            });
+        });
+
+        // Analytics placeholder (for future integration)
+        function trackEvent(eventName, properties) {
+            console.log('Analytics Event:', eventName, properties);
+            // Future: gtag('event', eventName, properties);
+            // Future: fbq('track', eventName);
+        }
+
+        // Track CTA clicks
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', function() {
+                trackEvent('cta_click', {
+                    button_text: this.textContent,
+                    location: this.closest('section').className
+                });
+            });
+        });
+    </script>
+</body>
+</html>
