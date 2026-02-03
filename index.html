@@ -1247,7 +1247,7 @@
             bottom: 24px;
             right: 24px;
             z-index: 1000;
-            display: none;
+            display: block; /* Always visible initially */
         }
 
         .sticky-cta .cta-button {
@@ -1826,7 +1826,32 @@
             // Future: fbq('track', eventName);
         }
 
-        // Track CTA clicks
+        // Sticky CTA visibility logic
+        function handleStickyCTA() {
+            const stickyCTA = document.getElementById('stickyCTA');
+            const heroFormSection = document.querySelector('.hero-form-section');
+            
+            if (!stickyCTA || !heroFormSection) return;
+            
+            const scrollPosition = window.scrollY + window.innerHeight;
+            const formTop = heroFormSection.offsetTop;
+            const formBottom = formTop + heroFormSection.offsetHeight;
+            
+            // Hide when form is visible, show otherwise
+            if (scrollPosition > formTop && scrollPosition < formBottom + 200) {
+                stickyCTA.style.display = 'none';
+            } else {
+                stickyCTA.style.display = 'block';
+            }
+        }
+
+        // Initialize sticky CTA logic
+        document.addEventListener('DOMContentLoaded', function() {
+            handleStickyCTA(); // Check initial state
+        });
+
+        // Track scroll for sticky CTA
+        window.addEventListener('scroll', handleStickyCTA);
         document.querySelectorAll('.cta-button').forEach(button => {
             button.addEventListener('click', function() {
                 trackEvent('cta_click', {
