@@ -2122,6 +2122,10 @@
                 
             } catch (error) {
                 console.error('API call failed:', error);
+                console.error('Error details:', error.message);
+                console.error('Error stack:', error.stack);
+                console.error('Fetch failed - showing fallback');
+                
                 // Fallback: show success anyway for good UX
                 showOrderSuccess(form, apiData.aff_sub1);
                 
