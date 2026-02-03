@@ -639,69 +639,6 @@
             display: block;
         }
 
-        /* Final CTA */
-        .final-cta {
-            padding: 60px 0;
-            background: var(--primary);
-            text-align: center;
-            color: white;
-        }
-
-        .final-cta h2 {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: 2.4rem;
-            margin-bottom: 32px;
-            font-weight: 600;
-        }
-
-        .final-cta img {
-            max-width: 280px;
-            margin: 0 auto 40px;
-            border-radius: 12px;
-            box-shadow: var(--shadow-medium);
-        }
-
-        .final-cta p[style*="color: rgba"] {
-            display: none;
-        }
-
-        .final-cta h3 {
-            font-size: 1.2rem;
-            font-weight: 400;
-            margin-bottom: 32px;
-            opacity: 0.9;
-        }
-
-        .final-cta .cta-button {
-            background: white;
-            color: var(--primary);
-            font-size: 1.1rem;
-            padding: 18px 48px;
-        }
-
-        .final-cta .cta-button:hover {
-            background: var(--cream);
-            transform: translateY(-2px);
-        }
-
-        .final-cta > .container > p:last-of-type {
-            margin-top: 24px;
-            opacity: 0.85;
-            font-size: 1rem;
-        }
-
-        .urgency-badge {
-            background: rgba(255,255,255,0.15);
-            color: white;
-            padding: 10px 24px;
-            border-radius: 24px;
-            display: inline-block;
-            margin-bottom: 24px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            border: 1px solid rgba(255,255,255,0.3);
-        }
-
         /* Footer */
         .footer {
             background: var(--text-primary);
@@ -1166,11 +1103,6 @@
                 line-height: 1.6;
             }
 
-            .final-cta h2 {
-                font-size: 2rem;
-                line-height: 1.3;
-            }
-
             .nav-menu {
                 display: none;
                 position: absolute;
@@ -1611,62 +1543,6 @@
         </div>
     </section>
 
-    <!-- Final CTA Section -->
-    <section class="final-cta">
-        <div class="container">
-            <div class="urgency-badge"><i class="fas fa-clock"></i> OFFERTA A TEMPO LIMITATO</div>
-            <h2>Non aspettare che sia troppo tardi. Restituisci vita ai tuoi capelli oggi.</h2>
-            
-            <img src="images/packshot-clean.jpg" alt="Packshot Trico Rosmarinus" style="max-width: 300px; margin: 30px auto; border-radius: 15px;" width="300" height="300" loading="lazy" decoding="async">
-            <p style="font-size: 0.8rem; color: rgba(255,255,255,0.8); text-align: center;">
-                PROMPT: Foto studio minimalista flacone su sfondo bianco/grigio chiarissimo con leggera ombra riflessa.
-            </p>
-
-            <h3 style="font-size: 1.2rem; font-weight: 400; margin-bottom: 32px; opacity: 0.9;">Acquista ora Trico Rosmarinus 75ml</h3>
-            
-            <form class="order-form" id="orderForm" onsubmit="handleOrderSubmit(event)">
-                <div class="urgency-badge" style="background: #E57373; color: white; padding: 10px 24px; border-radius: 24px; display: inline-block; margin-bottom: 24px; font-weight: 600; font-size: 0.9rem; border: none;">
-                    <i class="fas fa-clock"></i> OFFERTA TRA: <span id="countdownTimer">23h 57m 54s</span>
-                </div>
-                
-                <div class="price-display" style="margin-bottom: 32px;">
-                    <div class="discount-badge">-40% SCONTO</div>
-                    <div class="original-price">€33,00</div>
-                    <div class="price">€19,99</div>
-                    <div class="payment-method"><i class="fas fa-truck"></i> Pagamento alla consegna</div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="fullName">Nome e Cognome *</label>
-                    <input type="text" id="fullName" name="fullName" placeholder="Il tuo nome completo" required>
-                    <div class="form-error">Inserisci il tuo nome completo</div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="phone">Telefono *</label>
-                    <input type="tel" id="phone" name="phone" placeholder="Il tuo numero di telefono" required>
-                    <div class="form-error">Inserisci il tuo numero di telefono</div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="address">Indirizzo completo *</label>
-                    <textarea id="address" name="address" placeholder="Via, numero civico, città, CAP" required></textarea>
-                    <div class="form-error">Inserisci il tuo indirizzo completo</div>
-                </div>
-                
-                <button type="submit" class="form-submit">ORDINA ORA - PAGA ALLA CONSEGNA</button>
-            </form>
-            
-            <div class="success-message" id="successMessage">
-                <i class="fas fa-check-circle"></i>
-                <h3>Ordine Confermato!</h3>
-                <p>Grazie per il tuo ordine. Riceverai Trico Rosmarinus 75ml entro 24/48 ore con pagamento alla consegna.</p>
-            </div>
-            
-            <p style="margin-top: 24px; opacity: 0.85; font-size: 1rem;">Soddisfazione garantita. I tuoi capelli ti ringrazieranno.</p>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -1703,14 +1579,14 @@
             });
         });
 
-        // Handle Purchase Click - Scroll to form
+        // Handle Purchase Click - Scroll to hero form
         function handlePurchase() {
-            const formSection = document.querySelector('.final-cta');
+            const formSection = document.querySelector('.hero-form-section');
             formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
             
             // Focus on first input
             setTimeout(() => {
-                document.getElementById('fullName').focus();
+                document.getElementById('fullNameTop').focus();
             }, 500);
         }
 
