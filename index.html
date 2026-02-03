@@ -1254,17 +1254,33 @@
             padding: 14px 28px;
             font-size: 0.95rem;
             box-shadow: var(--shadow-medium);
-            animation: subtlePulse 3s ease-in-out infinite;
+            animation: pulse 2s ease-in-out infinite;
         }
 
-        @keyframes subtlePulse {
+        .hero-form-section .form-submit {
+            width: 100%;
+            background: linear-gradient(135deg, #FF6B35, #FF8E53);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 16px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
             0%, 100% {
                 transform: scale(1);
                 box-shadow: 0 4px 15px rgba(255, 107, 53, 0.2);
             }
             50% {
-                transform: scale(1.02);
-                box-shadow: 0 6px 20px rgba(255, 107, 53, 0.3);
+                transform: scale(1.05);
+                box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
             }
         }
     </style>
