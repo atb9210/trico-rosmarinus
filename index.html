@@ -2091,6 +2091,10 @@
             };
             
             try {
+                console.log('Starting API call...');
+                console.log('API Data:', apiData);
+                console.log('Fetch URL:', '/api/order');
+                
                 // Call our backend API
                 const response = await fetch('/api/order', {
                     method: 'POST',
@@ -2100,7 +2104,11 @@
                     body: JSON.stringify(apiData)
                 });
                 
+                console.log('Fetch completed, status:', response.status);
+                console.log('Response headers:', response.headers);
+                
                 const result = await response.json();
+                console.log('Response JSON:', result);
                 
                 if (result.success) {
                     console.log('Order sent successfully:', result);
