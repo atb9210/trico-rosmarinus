@@ -1526,8 +1526,8 @@
                         
                         <div class="form-group">
                             <label for="phoneTop">Telefono *</label>
-                            <input type="tel" id="phoneTop" name="phone" placeholder="Il tuo numero di telefono" required>
-                            <div class="form-error">Inserisci il tuo numero di telefono</div>
+                            <input type="tel" id="phoneTop" name="phone" placeholder="Es. 333 1234567" inputmode="tel" autocomplete="tel" required>
+                            <div class="form-error">Inserisci un numero italiano valido (10 cifre)</div>
                         </div>
                         
                         <div class="form-group">
@@ -2037,6 +2037,18 @@
             }, 500);
         }
 
+        // Validate Italian Phone Number
+        function validateItalianPhone(phone) {
+            // Rimuovi spazi, trattini, parentesi
+            let clean = phone.replace(/[\s\-\(\)\.]/g, '');
+            
+            // Rimuovi +39 o 0039 se presente
+            clean = clean.replace(/^(\+39|0039)/, '');
+            
+            // Deve avere 10 cifre e iniziare con 0, 3, o 4
+            return /^[034]\d{9}$/.test(clean);
+        }
+
         // Handle Order Form Submit
         async function handleOrderSubmit(event) {
             event.preventDefault();
@@ -2066,7 +2078,7 @@
                 document.getElementById('address' + prefix).parentElement.classList.remove('error');
             }
             
-            if (!phone.trim()) {
+            if (!phone.trim() || !validateItalianPhone(phone)) {
                 document.getElementById('phone' + prefix).parentElement.classList.add('error');
                 isValid = false;
             } else {
