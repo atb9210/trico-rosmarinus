@@ -2075,11 +2075,15 @@
             
             if (!isValid) return;
             
+            console.log('Validation passed, preparing API call...');
+            
             // Show loading state
             const submitButton = form.querySelector('.form-submit');
             const originalText = submitButton.textContent;
             submitButton.textContent = 'Invio in corso...';
             submitButton.disabled = true;
+            
+            console.log('Button state updated');
             
             // Prepare API data
             const apiData = {
@@ -2089,6 +2093,8 @@
                 aff_sub1: generateSubId(), // Generate unique tracking ID
                 aff_sub2: window.location.href
             };
+            
+            console.log('API Data prepared:', apiData);
             
             try {
                 console.log('Starting API call...');
