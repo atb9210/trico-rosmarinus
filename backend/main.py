@@ -4,12 +4,23 @@ import requests
 import uuid
 from datetime import datetime
 import logging
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 app = FastAPI(title="Trico Rosmarinus API", version="1.0.0")
+
+# Environment variables
+WORLDFILIA_API_KEY = os.getenv("WORLDFILIA_API_KEY", "cDLJTb14RzaP7SzsLfdP7Q")
+WORLDFILIA_SOURCE_ID = os.getenv("WORLDFILIA_SOURCE_ID", "57308485b8777")
+ENVIRONMENT = os.getenv("ENVIRONMENT", "development")
+LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")
 
 class OrderRequest(BaseModel):
     name: str
@@ -50,7 +61,7 @@ async def create_order(order: OrderRequest):
         
         # Prepare payload for Worldfilia
         payload = {
-            "source_id": "57308485b8777",
+            "source_id": WORLDFILIA_SOURCE_ID,
             "aff_sub1": order.aff_sub1 or str(uuid.uuid4()),
             "aff_sub2": order.aff_sub2 or "tricosolutions",
             "name": order.name.strip(),
@@ -59,10 +70,11 @@ async def create_order(order: OrderRequest):
         }
         
         logger.info(f"Sending to Worldfilia: {payload}")
+        logger.info(f"Environment: {ENVIRONMENT}")
         
         # Make API call to Worldfilia
         response = requests.post(
-            f"{worldfilia_url}?api_key=cDLJTb14RzaP7SzsLfdP7Q",
+            f"{worldfilia_url}?api_key={WORLDFILIA_API_KEY}",
             json=payload,
             timeout=30,
             headers={
@@ -117,6 +129,7 @@ async def get_stats():
     """
     return {
         "service": "Trico Rosmarinus API",
+        "environment": ENVIRONMENT,
         "uptime": "Running",
         "version": "1.0.0",
         "endpoints": [
