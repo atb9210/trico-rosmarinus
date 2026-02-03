@@ -657,6 +657,7 @@
             margin: 0 16px;
             font-size: 0.9rem;
             transition: color 0.3s ease;
+            cursor: pointer;
         }
 
         .footer-links a:hover {
@@ -666,6 +667,187 @@
         .footer p {
             color: rgba(255,255,255,0.6);
             font-size: 0.85rem;
+        }
+
+        .footer-disclaimer {
+            font-size: 0.8rem;
+            margin-top: 20px;
+            opacity: 0.75;
+            line-height: 1.6;
+        }
+
+        .footer-disclaimer i {
+            margin-right: 6px;
+            color: var(--primary-light);
+        }
+
+        .footer-disclaimer small {
+            display: block;
+            margin-top: 12px;
+            font-size: 0.7rem;
+            opacity: 0.7;
+        }
+
+        /* Legal Modal */
+        .legal-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .legal-modal.active {
+            display: flex;
+        }
+
+        .legal-modal-content {
+            background: white;
+            border-radius: 16px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .legal-modal-header {
+            position: sticky;
+            top: 0;
+            background: var(--primary);
+            color: white;
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 16px 16px 0 0;
+        }
+
+        .legal-modal-header h2 {
+            margin: 0;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .legal-modal-close {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .legal-modal-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .legal-modal-body {
+            padding: 32px;
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .legal-modal-body h1 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .legal-modal-body h2 {
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            margin-top: 28px;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .legal-modal-body h3 {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        .legal-modal-body p {
+            margin-bottom: 12px;
+            color: var(--text-secondary);
+        }
+
+        .legal-modal-body ul, .legal-modal-body ol {
+            margin: 12px 0;
+            padding-left: 24px;
+        }
+
+        .legal-modal-body li {
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+        }
+
+        .legal-modal-body strong {
+            color: var(--text-primary);
+        }
+
+        .legal-modal-body hr {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 24px 0;
+        }
+
+        .legal-modal-body a {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        .legal-disclaimer {
+            background: var(--cream);
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 24px;
+            border-left: 4px solid var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .legal-modal-content {
+                max-height: 90vh;
+                border-radius: 12px;
+            }
+
+            .legal-modal-header {
+                padding: 16px 20px;
+                border-radius: 12px 12px 0 0;
+            }
+
+            .legal-modal-header h2 {
+                font-size: 1.1rem;
+            }
+
+            .legal-modal-body {
+                padding: 24px 20px;
+            }
+
+            .legal-modal-body h1 {
+                font-size: 1.5rem;
+            }
+
+            .legal-modal-body h2 {
+                font-size: 1.15rem;
+            }
         }
 
         /* Hero Order Form */
@@ -1576,17 +1758,214 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-links">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Termini e Condizioni</a>
-                <a href="#">Resi e Rimborsi</a>
+                <a onclick="openLegalModal('privacy')">Privacy Policy</a>
+                <a onclick="openLegalModal('terms')">Termini e Condizioni</a>
+                <a onclick="openLegalModal('returns')">Resi e Rimborsi</a>
             </div>
             <p>Contatti: info@tricosolutions.it | Assistenza Clienti</p>
-            <p style="font-size: 0.9rem; margin-top: 15px; opacity: 0.8;">
-                Coadiuvante cosmetico nei trattamenti anticaduta. I risultati possono variare da persona a persona.<br>
-                Pagamenti Sicuri via Stripe, PayPal, Carta di Credito.
+            <p class="footer-disclaimer">
+                <i class="fas fa-flask"></i> Coadiuvante cosmetico. I risultati possono variare.<br>
+                <i class="fas fa-shield-alt"></i> Questo sito è un portale pubblicitario affiliato. Non siamo i venditori diretti.<br>
+                <small>Questo sito non fa parte di Facebook o Facebook Inc. FACEBOOK è un marchio registrato di FACEBOOK, Inc.</small>
             </p>
         </div>
     </footer>
+
+    <!-- Legal Modals -->
+    <div class="legal-modal" id="privacyModal">
+        <div class="legal-modal-content">
+            <div class="legal-modal-header">
+                <h2><i class="fas fa-shield-alt"></i> Privacy Policy e Cookie Policy</h2>
+                <button class="legal-modal-close" onclick="closeLegalModal('privacy')">&times;</button>
+            </div>
+            <div class="legal-modal-body">
+                <p><strong>Ultimo aggiornamento:</strong> Febbraio 2025</p>
+                <hr>
+                
+                <h2>1. Titolare del Trattamento</h2>
+                <p>Il presente sito web è gestito da un Publisher affiliato che promuove prodotti di terze parti tramite la piattaforma Worldfilia.</p>
+                <p><strong>Contatti:</strong> info@tricosolutions.it</p>
+                
+                <h2>2. Tipologia di Dati Raccolti</h2>
+                <h3>2.1 Dati forniti volontariamente</h3>
+                <p>Quando compili il modulo d'ordine, raccogliamo:</p>
+                <ul>
+                    <li>Nome e Cognome</li>
+                    <li>Numero di telefono</li>
+                    <li>Indirizzo di spedizione completo</li>
+                </ul>
+                
+                <h3>2.2 Dati raccolti automaticamente</h3>
+                <ul>
+                    <li>Indirizzo IP</li>
+                    <li>Tipo di browser e dispositivo</li>
+                    <li>Pagine visitate e tempo di permanenza</li>
+                    <li>Dati di navigazione tramite cookie</li>
+                </ul>
+                
+                <h2>3. Finalità del Trattamento</h2>
+                <ol>
+                    <li><strong>Evasione dell'ordine:</strong> I dati vengono trasmessi alla piattaforma di affiliazione (Worldfilia) e al fornitore/venditore per la consegna.</li>
+                    <li><strong>Comunicazioni relative all'ordine:</strong> Per contattarti sullo stato della spedizione.</li>
+                    <li><strong>Analisi e miglioramento:</strong> Dati anonimi per migliorare l'esperienza utente.</li>
+                </ol>
+                
+                <h2>4. Trasferimento Dati a Terze Parti</h2>
+                <p><strong>Importante:</strong> Questo sito è un portale pubblicitario (Publisher) e NON è il venditore diretto dei prodotti promossi.</p>
+                <p>I dati personali verranno trasferiti a:</p>
+                <ul>
+                    <li><strong>Worldfilia</strong> (piattaforma di affiliazione)</li>
+                    <li><strong>Merchant/Fornitore</strong> del prodotto per l'evasione dell'ordine</li>
+                </ul>
+                
+                <h2>5. Cookie Policy</h2>
+                <h3>Cookie Tecnici (necessari)</h3>
+                <p>Funzionamento base del sito, memorizzazione preferenze, sicurezza.</p>
+                
+                <h3>Cookie Analitici</h3>
+                <p>Google Analytics (in forma anonimizzata) per analisi del traffico.</p>
+                
+                <h3>Cookie di Marketing</h3>
+                <p>Meta Pixel (Facebook/Instagram) per mostrare annunci pertinenti.</p>
+                
+                <h2>6. Diritti dell'Interessato (GDPR)</h2>
+                <p>Ai sensi del Regolamento UE 2016/679, hai diritto di:</p>
+                <ul>
+                    <li><strong>Accesso:</strong> Ottenere conferma del trattamento e copia dei dati</li>
+                    <li><strong>Rettifica:</strong> Correggere dati inesatti</li>
+                    <li><strong>Cancellazione:</strong> Richiedere la cancellazione ("diritto all'oblio")</li>
+                    <li><strong>Opposizione:</strong> Opporti al trattamento</li>
+                    <li><strong>Revoca consenso:</strong> Revocare il consenso in qualsiasi momento</li>
+                </ul>
+                <p>Per esercitare i tuoi diritti: <strong>info@tricosolutions.it</strong></p>
+                
+                <div class="legal-disclaimer">
+                    <strong>Disclaimer Facebook:</strong> Questo sito non fa parte del sito Facebook o Facebook Inc. Inoltre, questo sito NON è approvato da Facebook in alcun modo. FACEBOOK è un marchio registrato di FACEBOOK, Inc.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="legal-modal" id="termsModal">
+        <div class="legal-modal-content">
+            <div class="legal-modal-header">
+                <h2><i class="fas fa-file-contract"></i> Termini e Condizioni</h2>
+                <button class="legal-modal-close" onclick="closeLegalModal('terms')">&times;</button>
+            </div>
+            <div class="legal-modal-body">
+                <p><strong>Ultimo aggiornamento:</strong> Febbraio 2025</p>
+                <hr>
+                
+                <h2>1. Identificazione del Sito</h2>
+                <p>Il presente sito web è un <strong>portale pubblicitario (Publisher)</strong> che promuove prodotti di terze parti in affiliazione con la piattaforma Worldfilia.</p>
+                <p><strong>Importante:</strong> NON siamo i produttori, né i venditori diretti dei beni promossi su questo sito.</p>
+                <p><strong>Contatti:</strong> info@tricosolutions.it</p>
+                
+                <h2>2. Natura del Servizio</h2>
+                <h3>2.1 Ruolo del Publisher</h3>
+                <p>Questo sito opera esclusivamente come intermediario pubblicitario. Il nostro ruolo si limita a:</p>
+                <ul>
+                    <li>Presentare l'offerta commerciale del prodotto</li>
+                    <li>Raccogliere i dati necessari per l'ordine</li>
+                    <li>Trasmettere tali dati al fornitore/venditore tramite la piattaforma di affiliazione</li>
+                </ul>
+                
+                <h3>2.2 Cosa NON facciamo</h3>
+                <ul>
+                    <li>NON produciamo i prodotti pubblicizzati</li>
+                    <li>NON gestiamo la logistica o la spedizione</li>
+                    <li>NON processiamo i pagamenti</li>
+                    <li>NON gestiamo resi, rimborsi o reclami sul prodotto</li>
+                </ul>
+                
+                <h2>3. Limitazione di Responsabilità</h2>
+                <h3>3.1 Responsabilità del Publisher</h3>
+                <p>In qualità di Publisher affiliato, <strong>decliniamo ogni responsabilità</strong> per:</p>
+                <ul>
+                    <li>Qualità, efficacia o sicurezza dei prodotti promossi</li>
+                    <li>Ritardi, errori o problemi nella spedizione</li>
+                    <li>Difetti, danni o malfunzionamenti del prodotto</li>
+                    <li>Resi, rimborsi o sostituzioni</li>
+                    <li>Eventuali effetti indesiderati derivanti dall'uso del prodotto</li>
+                </ul>
+                
+                <h3>3.2 Responsabilità del Venditore (Merchant)</h3>
+                <p>Tutte le responsabilità relative a qualità, spedizione, garanzia, resi e assistenza <strong>ricadono esclusivamente sul fornitore/venditore finale (Merchant)</strong>.</p>
+                
+                <h2>4. Disclaimer sui Risultati</h2>
+                <p>I risultati citati su questo sito web <strong>possono variare da persona a persona</strong> e non sono garantiti.</p>
+                <p>Le testimonianze rappresentano esperienze individuali e <strong>non costituiscono una prova scientifica</strong> dell'efficacia del prodotto per tutti gli utenti.</p>
+                <p>Il prodotto promosso è un <strong>coadiuvante cosmetico</strong> nei trattamenti anticaduta. Non è un farmaco.</p>
+                
+                <h2>5. Processo di Acquisto</h2>
+                <p>Compilando il modulo d'ordine, l'utente accetta di trasmettere i propri dati al venditore e conferma di aver letto i presenti Termini.</p>
+                <p>Il contratto di vendita si perfeziona <strong>esclusivamente tra l'utente e il Merchant/Venditore</strong>, non con il presente sito.</p>
+                
+                <div class="legal-disclaimer">
+                    <strong>Disclaimer Facebook:</strong> Questo sito non fa parte del sito Facebook o Facebook Inc. Inoltre, questo sito NON è approvato da Facebook in alcun modo. FACEBOOK è un marchio registrato di FACEBOOK, Inc.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="legal-modal" id="returnsModal">
+        <div class="legal-modal-content">
+            <div class="legal-modal-header">
+                <h2><i class="fas fa-undo"></i> Resi e Rimborsi</h2>
+                <button class="legal-modal-close" onclick="closeLegalModal('returns')">&times;</button>
+            </div>
+            <div class="legal-modal-body">
+                <p><strong>Ultimo aggiornamento:</strong> Febbraio 2025</p>
+                <hr>
+                
+                <div class="legal-disclaimer" style="margin-top: 0; margin-bottom: 24px;">
+                    <strong>Premessa Importante:</strong> Questo sito è un portale pubblicitario (Publisher) che promuove prodotti in affiliazione. NON siamo i venditori diretti del prodotto. Di conseguenza, <strong>NON gestiamo direttamente resi, rimborsi o reclami</strong>.
+                </div>
+                
+                <h2>1. Chi Contattare per Resi e Rimborsi</h2>
+                <p>Per qualsiasi richiesta relativa a reso, rimborso, prodotto danneggiato o mancata consegna:</p>
+                <p><strong>Contatta direttamente il Servizio Clienti del Venditore</strong> utilizzando:</p>
+                <ul>
+                    <li>I riferimenti presenti sul pacco ricevuto</li>
+                    <li>I contatti indicati nella conferma d'ordine via SMS/Email</li>
+                    <li>Il numero di telefono del corriere per problemi di consegna</li>
+                </ul>
+                
+                <h2>2. Diritto di Recesso</h2>
+                <p>Ai sensi del Codice del Consumo, il consumatore ha diritto di recedere entro <strong>14 giorni</strong> dalla ricezione del prodotto.</p>
+                <p>Per esercitare il diritto di recesso:</p>
+                <ol>
+                    <li>Comunicare la volontà di recedere al <strong>venditore</strong> (non a questo sito)</li>
+                    <li>Restituire il prodotto integro nella confezione originale</li>
+                    <li>Sostenere le spese di spedizione per il reso</li>
+                </ol>
+                
+                <h2>3. Garanzia Legale</h2>
+                <p>Il venditore è responsabile della <strong>garanzia legale di conformità</strong> per 24 mesi dalla consegna.</p>
+                <p>In caso di prodotto difettoso, il consumatore ha diritto a riparazione, sostituzione o rimborso. <strong>Queste richieste vanno indirizzate esclusivamente al venditore.</strong></p>
+                
+                <h2>4. Problemi con la Consegna</h2>
+                <h3>Pacco non ricevuto</h3>
+                <p>Verifica lo stato della spedizione con il tracking, contatta il corriere, poi il Servizio Clienti del venditore.</p>
+                
+                <h3>Pacco danneggiato</h3>
+                <p>Accetta con <strong>riserva</strong>, documenta i danni con foto, contatta immediatamente il venditore.</p>
+                
+                <h2>5. Limitazione di Responsabilità</h2>
+                <p>In qualità di Publisher affiliato, <strong>ribadiamo che</strong>:</p>
+                <ul>
+                    <li>Non siamo responsabili della qualità o conformità del prodotto</li>
+                    <li>Non gestiamo la logistica, spedizione o consegna</li>
+                    <li>Non processiamo rimborsi o resi</li>
+                </ul>
+                <p>Il nostro ruolo si limita alla promozione pubblicitaria del prodotto.</p>
+                
+                <div class="legal-disclaimer">
+                    <strong>Disclaimer Facebook:</strong> Questo sito non fa parte del sito Facebook o Facebook Inc. Inoltre, questo sito NON è approvato da Facebook in alcun modo. FACEBOOK è un marchio registrato di FACEBOOK, Inc.
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Sticky CTA Button -->
     <div class="sticky-cta" id="stickyCTA">
@@ -1606,6 +1985,45 @@
             link.addEventListener('click', () => {
                 document.querySelector('.nav-menu').classList.remove('active');
             });
+        });
+
+        // Legal Modal Functions
+        function openLegalModal(type) {
+            const modalId = type + 'Modal';
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeLegalModal(type) {
+            const modalId = type + 'Modal';
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Close modal when clicking outside content
+        document.querySelectorAll('.legal-modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.legal-modal.active').forEach(modal => {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            }
         });
 
         // Handle Purchase Click - Scroll to hero form
