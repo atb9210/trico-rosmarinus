@@ -620,6 +620,39 @@
             font-size: 0.85rem;
         }
 
+        /* Hero Order Form */
+        .hero-order-form {
+            background: white;
+            padding: 32px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-medium);
+            margin: 40px 0;
+            max-width: 500px;
+        }
+
+        .order-form-top {
+            margin-top: 24px;
+        }
+
+        .order-form-top .form-group {
+            margin-bottom: 16px;
+        }
+
+        .order-form-top .form-group label {
+            font-size: 0.9rem;
+        }
+
+        .order-form-top .form-group input,
+        .order-form-top .form-group textarea {
+            padding: 12px 14px;
+            font-size: 0.95rem;
+        }
+
+        .order-form-top .form-submit {
+            padding: 16px;
+            font-size: 1rem;
+        }
+
         /* Form Styles */
         .order-form {
             background: white;
@@ -800,6 +833,11 @@
             
             .hero {
                 padding: 100px 0 60px;
+            }
+
+            .hero-order-form {
+                margin: 30px 0;
+                padding: 24px;
             }
             
             .two-column {
@@ -1022,7 +1060,39 @@
                 <li><i class="fas fa-star icon"></i> Volume Immediato: Capelli visibilmente più densi e corposi dopo l'uso</li>
             </ul>
 
-            <button class="cta-button" onclick="handlePurchase()">ACQUISTA ORA E TRASFORMA I TUOI CAPELLI</button>
+            <!-- Hero Order Form -->
+            <div class="hero-order-form">
+                <div class="price-display">
+                    <div class="discount-badge">-40% SCONTO</div>
+                    <div class="original-price">€33,00</div>
+                    <div class="price">€19,99</div>
+                    <div class="payment-method"><i class="fas fa-truck"></i> Pagamento alla consegna</div>
+                </div>
+                
+                <form class="order-form order-form-top" id="orderFormTop" onsubmit="handleOrderSubmit(event)">
+                    <div class="form-group">
+                        <label for="fullNameTop">Nome e Cognome *</label>
+                        <input type="text" id="fullNameTop" name="fullName" placeholder="Il tuo nome completo" required>
+                        <div class="form-error">Inserisci il tuo nome completo</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phoneTop">Telefono *</label>
+                        <input type="tel" id="phoneTop" name="phone" placeholder="Il tuo numero di telefono" required>
+                        <div class="form-error">Inserisci il tuo numero di telefono</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="addressTop">Indirizzo completo *</label>
+                        <textarea id="addressTop" name="address" placeholder="Via, numero civico, città, CAP" required></textarea>
+                        <div class="form-error">Inserisci il tuo indirizzo completo</div>
+                    </div>
+                    
+                    <button type="submit" class="form-submit">ORDINA ORA - RICEVI ENTRO 24/48 ORE</button>
+                </form>
+            </div>
+
+            <button class="cta-button" onclick="handlePurchase()">SCOPRI DI PIÙ</button>
 
             <div class="social-proof">
                 <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> Oltre 5.000 clienti hanno già scelto Trico Rosmarinus</div>
@@ -1322,33 +1392,36 @@
         function handleOrderSubmit(event) {
             event.preventDefault();
             
-            const form = document.getElementById('orderForm');
-            const fullName = document.getElementById('fullName').value;
-            const address = document.getElementById('address').value;
-            const phone = document.getElementById('phone').value;
+            const form = event.target;
+            const formId = form.id;
+            const prefix = formId === 'orderFormTop' ? 'Top' : '';
+            
+            const fullName = document.getElementById('fullName' + prefix).value;
+            const address = document.getElementById('address' + prefix).value;
+            const phone = document.getElementById('phone' + prefix).value;
             
             // Validation
             let isValid = true;
             
             if (!fullName.trim()) {
-                document.getElementById('fullName').parentElement.classList.add('error');
+                document.getElementById('fullName' + prefix).parentElement.classList.add('error');
                 isValid = false;
             } else {
-                document.getElementById('fullName').parentElement.classList.remove('error');
+                document.getElementById('fullName' + prefix).parentElement.classList.remove('error');
             }
             
             if (!address.trim()) {
-                document.getElementById('address').parentElement.classList.add('error');
+                document.getElementById('address' + prefix).parentElement.classList.add('error');
                 isValid = false;
             } else {
-                document.getElementById('address').parentElement.classList.remove('error');
+                document.getElementById('address' + prefix).parentElement.classList.remove('error');
             }
             
             if (!phone.trim()) {
-                document.getElementById('phone').parentElement.classList.add('error');
+                document.getElementById('phone' + prefix).parentElement.classList.add('error');
                 isValid = false;
             } else {
-                document.getElementById('phone').parentElement.classList.remove('error');
+                document.getElementById('phone' + prefix).parentElement.classList.remove('error');
             }
             
             if (!isValid) return;
@@ -1361,28 +1434,36 @@
                 product: 'Trico Rosmarinus 75ml',
                 price: '19.99',
                 paymentMethod: 'Pagamento alla consegna',
+                formLocation: formId === 'orderFormTop' ? 'Hero' : 'Final CTA',
                 timestamp: new Date().toISOString()
             };
             
             console.log('Ordine inviato:', orderData);
             
-            // Placeholder for API integration
-            // Future: fetch('/api/orders', {
-            //     method: 'POST',
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: JSON.stringify(orderData)
-            // });
-            
             // Show success message
             form.style.display = 'none';
-            document.querySelector('.price-display').style.display = 'none';
-            document.getElementById('successMessage').style.display = 'block';
+            const priceDisplay = form.previousElementSibling;
+            if (priceDisplay && priceDisplay.classList.contains('price-display')) {
+                priceDisplay.style.display = 'none';
+            }
+            
+            // Create success message
+            const successDiv = document.createElement('div');
+            successDiv.className = 'success-message';
+            successDiv.style.display = 'block';
+            successDiv.innerHTML = `
+                <i class="fas fa-check-circle"></i>
+                <h3>Ordine Confermato!</h3>
+                <p>Grazie per il tuo ordine. Riceverai Trico Rosmarinus 75ml entro 24/48 ore con pagamento alla consegna.</p>
+            `;
+            form.parentElement.appendChild(successDiv);
             
             // Track conversion
             trackEvent('order_submitted', {
                 product: 'Trico Rosmarinus 75ml',
                 price: '19.99',
-                payment_method: 'cash_on_delivery'
+                payment_method: 'cash_on_delivery',
+                form_location: formId === 'orderFormTop' ? 'Hero' : 'Final CTA'
             });
         }
 
