@@ -1847,7 +1847,16 @@
 
         // Initialize sticky CTA logic
         document.addEventListener('DOMContentLoaded', function() {
-            handleStickyCTA(); // Check initial state
+            // Show sticky immediately on load
+            const stickyCTA = document.getElementById('stickyCTA');
+            if (stickyCTA) {
+                stickyCTA.style.display = 'block';
+            }
+            
+            // Check scroll position after a small delay
+            setTimeout(() => {
+                handleStickyCTA();
+            }, 100);
         });
 
         // Track scroll for sticky CTA
