@@ -923,6 +923,66 @@
             line-height: 1.7;
         }
 
+        /* Trust Badges Section */
+        .trust-badges-section {
+            margin-top: 60px;
+        }
+
+        .trust-badges-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .trust-badge-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .trust-badge-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-medium);
+            border-color: var(--primary);
+        }
+
+        .trust-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .trust-icon i {
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .trust-content h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .trust-content p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
         /* Mobile Responsive */
         @media (max-width: 1024px) {
             .hero-content {
@@ -982,6 +1042,24 @@
             .trust-badges {
                 flex-direction: column;
                 gap: 8px;
+            }
+
+            .trust-badges-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .trust-badge-card {
+                padding: 20px;
+            }
+
+            .trust-icon {
+                width: 50px;
+                height: 50px;
+            }
+
+            .trust-icon i {
+                font-size: 1.3rem;
             }
 
             .section-title {
@@ -1364,9 +1442,27 @@
                 </div>
             </div>
 
-            <div style="text-align: center; margin-top: 40px;">
-                <span class="trust-badge" style="background: var(--primary); color: white;">100% Soddisfatti o Rimborsati</span>
-                <span class="trust-badge" style="background: var(--primary); color: white;">Garanzia di Qualità</span>
+            <div class="trust-badges-section">
+                <div class="trust-badges-grid">
+                    <div class="trust-badge-card">
+                        <div class="trust-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="trust-content">
+                            <h4>100% Soddisfatti o Rimborsati</h4>
+                            <p>Garanzia totale 30 giorni</p>
+                        </div>
+                    </div>
+                    <div class="trust-badge-card">
+                        <div class="trust-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="trust-content">
+                            <h4>Garanzia di Qualità</h4>
+                            <p>Prodotto certificato in Italia</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
