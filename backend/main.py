@@ -80,14 +80,27 @@ async def create_order(order: OrderRequest):
         )
         
         logger.info(f"Worldfilia response status: {response.status_code}")
+        logger.info(f"Worldfilia response headers: {response.headers}")
+        logger.info(f"Worldfilia response text: {response.text}")
         
         if response.status_code == 200:
-            logger.info("Order successfully sent to Worldfilia")
-            return OrderResponse(
-                success=True,
-                order_id=payload["aff_sub1"],
-                message="Order processed successfully"
-            )
+            try:
+                response_data = response.json()
+                logger.info(f"Worldfilia response JSON: {response_data}")
+                logger.info("Order successfully sent to Worldfilia")
+                return OrderResponse(
+                    success=True,
+                    order_id=payload["aff_sub1"],
+                    message="Order processed successfully"
+                )
+            except Exception as json_error:
+                logger.error(f"JSON decode error: {json_error}")
+                logger.error(f"Response content: {response.text[:500]}")  # First 500 chars
+                return OrderResponse(
+                    success=False,
+                    error="Worldfilia response parsing error",
+                    message="Order processing failed"
+                )
         else:
             logger.error(f"Worldfilia API error: {response.status_code} - {response.text}")
             return OrderResponse(
