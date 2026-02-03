@@ -17,6 +17,12 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy backend application
 COPY backend/ /app/
 
+# Set environment variables (can be overridden by Dokploy)
+ENV WORLDFILIA_API_KEY=cDLJTb14RzaP7SzsLfdP7Q
+ENV WORLDFILIA_SOURCE_ID=57308485b8777
+ENV ENVIRONMENT=production
+ENV LOG_LEVEL=INFO
+
 # Copy frontend files to nginx directory
 COPY . /var/www/html/
 

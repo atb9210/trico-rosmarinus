@@ -5,10 +5,6 @@ import uuid
 from datetime import datetime
 import logging
 import os
-from dotenv import load_dotenv
-
-# Load environment variables
-load_dotenv()
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -16,7 +12,7 @@ logger = logging.getLogger(__name__)
 
 app = FastAPI(title="Trico Rosmarinus API", version="1.0.0")
 
-# Environment variables
+# Environment variables (from Docker environment)
 WORLDFILIA_API_KEY = os.getenv("WORLDFILIA_API_KEY", "cDLJTb14RzaP7SzsLfdP7Q")
 WORLDFILIA_SOURCE_ID = os.getenv("WORLDFILIA_SOURCE_ID", "57308485b8777")
 ENVIRONMENT = os.getenv("ENVIRONMENT", "development")
