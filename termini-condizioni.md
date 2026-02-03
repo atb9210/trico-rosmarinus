@@ -11,7 +11,7 @@ Il presente sito web è un **portale pubblicitario (Publisher)** che promuove pr
 **Importante:** NON siamo i produttori, né i venditori diretti dei beni promossi su questo sito.
 
 **Contatti:**  
-Email: info@tricosolutions.it
+Email: info@pharmabenessere.com
 
 ---
 

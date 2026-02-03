@@ -103,7 +103,7 @@ Il nostro ruolo si limita alla promozione pubblicitaria del prodotto.
 ## 7. Contatti
 
 **Per domande generali sul sito:**  
-Email: info@tricosolutions.it
+Email: info@pharmabenessere.com
 
 **Per resi, rimborsi e problemi con l'ordine:**  
 Contatta direttamente il venditore tramite i riferimenti nella conferma d'ordine.

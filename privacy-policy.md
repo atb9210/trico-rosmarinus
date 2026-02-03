@@ -9,7 +9,7 @@
 Il presente sito web è gestito da un Publisher affiliato che promuove prodotti di terze parti tramite la piattaforma Worldfilia.
 
 **Contatti:**  
-Email: info@tricosolutions.it
+Email: info@pharmabenessere.com
 
 ---
 
