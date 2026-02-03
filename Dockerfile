@@ -59,26 +59,12 @@ RUN echo 'server { \
     } \
 }' > /etc/nginx/sites-available/default
 
-# Remove default nginx config
-RUN rm /etc/nginx/sites-enabled/default
+# Link nginx config
+RUN ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 
-# Create startup script
-RUN echo '#!/bin/bash \
-echo "Starting Trico Rosmarinus API..." \
-\
-# Start FastAPI backend in background \
-uvicorn main:app --host 0.0.0.0 --port 8000 & \
-\
-# Wait for backend to start \
-sleep 2 \
-\
-# Test backend health \
-curl -f http://localhost:8000/health || exit 1 \
-\
-echo "Backend is healthy, starting nginx..." \
-\
-# Start nginx in foreground \
-nginx -g "daemon off;"' > /start.sh && chmod +x /start.sh
+# Copy startup script
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
 
 # Create nginx log directory
 RUN mkdir -p /var/log/nginx
