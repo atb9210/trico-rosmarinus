@@ -266,7 +266,7 @@ class TrackPurchaseRequest(BaseModel):
     fbc: Optional[str] = None
     external_id: Optional[str] = None
     event_id: Optional[str] = None
-    value: float = 19.99
+    value: float = 8.00
     currency: str = "EUR"
     content_name: str = "Trico Rosmarinus 75ml"
     content_ids: Optional[list] = None
