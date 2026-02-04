@@ -296,9 +296,7 @@ async def track_view_content(track_data: TrackViewRequest, request: Request):
         "content_name": "Trico Rosmarinus Landing Page",
         "content_category": "Hair Care",
         "content_type": "product",
-        "content_ids": ["trico_rosmarinus_75ml"],
-        "value": 19.99,
-        "currency": "EUR"
+        "content_ids": ["trico_rosmarinus_75ml"]
     }
     
     result = send_facebook_event("ViewContent", event_data, user_data, request)
@@ -385,9 +383,7 @@ async def track_initiate_checkout(track_data: TrackViewRequest, request: Request
         "content_name": "Trico Rosmarinus 75ml",
         "content_category": "Hair Care",
         "content_type": "product",
-        "content_ids": ["trico_rosmarinus_75ml"],
-        "value": 19.99,
-        "currency": "EUR"
+        "content_ids": ["trico_rosmarinus_75ml"]
     }
     
     result = send_facebook_event("InitiateCheckout", event_data, user_data, request)
@@ -420,9 +416,7 @@ async def track_add_to_cart(track_data: TrackViewRequest, request: Request):
     event_data = {
         "content_name": "Trico Rosmarinus 75ml",
         "content_type": "product",
-        "content_ids": ["trico_rosmarinus_75ml"],
-        "value": 19.99,
-        "currency": "EUR"
+        "content_ids": ["trico_rosmarinus_75ml"]
     }
     
     result = send_facebook_event("AddToCart", event_data, user_data, request)
