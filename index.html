@@ -16,6 +16,24 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600&display=swap"></noscript>
+
+    <!-- Facebook Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '2095934291260128');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=2095934291260128&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Facebook Pixel Code -->
     
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
@@ -2333,7 +2351,20 @@
         // Facebook Conversion API - Track ViewContent on page load
         async function trackViewContent() {
             try {
-                // Get Facebook cookies if available
+                // Generate unique event ID for deduplication
+                const eventId = 'view_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                
+                // 1. Track with Pixel Standard (client-side)
+                fbq('track', 'ViewContent', {
+                    content_name: 'Trico Rosmarinus Landing Page',
+                    content_category: 'Hair Care',
+                    content_ids: ['trico_rosmarinus_75ml'],
+                    value: 19.99,
+                    currency: 'EUR',
+                    eventID: eventId
+                });
+                
+                // 2. Track with Conversion API (server-side)
                 const fbp = getCookie('_fbp');
                 const fbc = getCookie('_fbc');
                 
@@ -2347,12 +2378,12 @@
                         user_agent: navigator.userAgent,
                         fbp: fbp,
                         fbc: fbc,
-                        event_id: 'view_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9)
+                        event_id: eventId
                     })
                 });
                 
                 const result = await response.json();
-                console.log('Facebook ViewContent tracked:', result);
+                console.log('Facebook ViewContent tracked (both Pixel + API):', result);
             } catch (error) {
                 console.error('Facebook tracking error:', error);
             }
@@ -2373,6 +2404,19 @@
             initiateCheckoutTracked = true;
             
             try {
+                const eventId = 'checkout_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                
+                // 1. Track with Pixel Standard (client-side)
+                fbq('track', 'InitiateCheckout', {
+                    content_name: 'Trico Rosmarinus 75ml',
+                    content_category: 'Hair Care',
+                    content_ids: ['trico_rosmarinus_75ml'],
+                    value: 19.99,
+                    currency: 'EUR',
+                    eventID: eventId
+                });
+                
+                // 2. Track with Conversion API (server-side)
                 const fbp = getCookie('_fbp');
                 const fbc = getCookie('_fbc');
                 
@@ -2384,12 +2428,12 @@
                         user_agent: navigator.userAgent,
                         fbp: fbp,
                         fbc: fbc,
-                        event_id: 'checkout_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9)
+                        event_id: eventId
                     })
                 });
                 
                 const result = await response.json();
-                console.log('Facebook InitiateCheckout tracked:', result);
+                console.log('Facebook InitiateCheckout tracked (both Pixel + API):', result);
             } catch (error) {
                 console.error('Facebook InitiateCheckout error:', error);
             }
@@ -2398,6 +2442,18 @@
         // Facebook Conversion API - Track AddToCart (sticky CTA click)
         async function trackAddToCart() {
             try {
+                const eventId = 'cart_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                
+                // 1. Track with Pixel Standard (client-side)
+                fbq('track', 'AddToCart', {
+                    content_name: 'Trico Rosmarinus 75ml',
+                    content_ids: ['trico_rosmarinus_75ml'],
+                    value: 19.99,
+                    currency: 'EUR',
+                    eventID: eventId
+                });
+                
+                // 2. Track with Conversion API (server-side)
                 const fbp = getCookie('_fbp');
                 const fbc = getCookie('_fbc');
                 
@@ -2409,12 +2465,12 @@
                         user_agent: navigator.userAgent,
                         fbp: fbp,
                         fbc: fbc,
-                        event_id: 'cart_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9)
+                        event_id: eventId
                     })
                 });
                 
                 const result = await response.json();
-                console.log('Facebook AddToCart tracked:', result);
+                console.log('Facebook AddToCart tracked (both Pixel + API):', result);
             } catch (error) {
                 console.error('Facebook AddToCart error:', error);
             }
@@ -2452,13 +2508,25 @@
         // Facebook Conversion API - Track Purchase (form submitted successfully)
         async function trackPurchase(orderData) {
             try {
-                const fbp = getCookie('_fbp');
-                const fbc = getCookie('_fbc');
+                const eventId = 'purchase_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
                 
                 // Parse name into first and last
                 const nameParts = (orderData.name || '').trim().split(' ');
                 const firstName = nameParts[0] || '';
                 const lastName = nameParts.slice(1).join(' ') || '';
+                
+                // 1. Track with Pixel Standard (client-side)
+                fbq('track', 'Purchase', {
+                    content_name: 'Trico Rosmarinus 75ml',
+                    content_ids: ['trico_rosmarinus_75ml'],
+                    value: 8.00,
+                    currency: 'EUR',
+                    eventID: eventId
+                });
+                
+                // 2. Track with Conversion API (server-side)
+                const fbp = getCookie('_fbp');
+                const fbc = getCookie('_fbc');
                 
                 const response = await fetch('/api/track/purchase', {
                     method: 'POST',
@@ -2468,7 +2536,7 @@
                         user_agent: navigator.userAgent,
                         fbp: fbp,
                         fbc: fbc,
-                        event_id: 'purchase_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9),
+                        event_id: eventId,
                         value: 8.00,
                         currency: 'EUR',
                         content_name: 'Trico Rosmarinus 75ml',
@@ -2479,7 +2547,7 @@
                 });
                 
                 const result = await response.json();
-                console.log('Facebook Purchase tracked:', result);
+                console.log('Facebook Purchase tracked (both Pixel + API):', result);
             } catch (error) {
                 console.error('Facebook Purchase error:', error);
             }
