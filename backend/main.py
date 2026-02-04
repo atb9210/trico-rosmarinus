@@ -353,6 +353,120 @@ async def track_purchase(track_data: TrackPurchaseRequest, request: Request):
         "details": result
     }
 
+# Generic event tracking model
+class TrackEventRequest(BaseModel):
+    event_name: str
+    source_url: Optional[str] = None
+    user_agent: Optional[str] = None
+    fbp: Optional[str] = None
+    fbc: Optional[str] = None
+    external_id: Optional[str] = None
+    event_id: Optional[str] = None
+
+@app.post("/api/track/initiate-checkout")
+async def track_initiate_checkout(track_data: TrackViewRequest, request: Request):
+    """
+    Track InitiateCheckout event - when user starts typing in form
+    """
+    logger.info("Tracking InitiateCheckout event")
+    
+    user_data = {
+        "source_url": track_data.source_url or str(request.url),
+        "user_agent": track_data.user_agent or request.headers.get("user-agent", ""),
+        "client_ip": request.client.host,
+        "fbp": track_data.fbp,
+        "fbc": track_data.fbc,
+        "external_id": track_data.external_id,
+        "event_id": track_data.event_id,
+        "country": "it"
+    }
+    
+    event_data = {
+        "content_name": "Trico Rosmarinus 75ml",
+        "content_category": "Hair Care",
+        "content_type": "product",
+        "content_ids": ["trico_rosmarinus_75ml"],
+        "value": 19.99,
+        "currency": "EUR"
+    }
+    
+    result = send_facebook_event("InitiateCheckout", event_data, user_data, request)
+    
+    return {
+        "success": result.get("success", False),
+        "event": "InitiateCheckout",
+        "message": "Event tracked" if result.get("success") else "Event tracking failed",
+        "details": result
+    }
+
+@app.post("/api/track/add-to-cart")
+async def track_add_to_cart(track_data: TrackViewRequest, request: Request):
+    """
+    Track AddToCart event - when user clicks sticky CTA
+    """
+    logger.info("Tracking AddToCart event")
+    
+    user_data = {
+        "source_url": track_data.source_url or str(request.url),
+        "user_agent": track_data.user_agent or request.headers.get("user-agent", ""),
+        "client_ip": request.client.host,
+        "fbp": track_data.fbp,
+        "fbc": track_data.fbc,
+        "external_id": track_data.external_id,
+        "event_id": track_data.event_id,
+        "country": "it"
+    }
+    
+    event_data = {
+        "content_name": "Trico Rosmarinus 75ml",
+        "content_type": "product",
+        "content_ids": ["trico_rosmarinus_75ml"],
+        "value": 19.99,
+        "currency": "EUR"
+    }
+    
+    result = send_facebook_event("AddToCart", event_data, user_data, request)
+    
+    return {
+        "success": result.get("success", False),
+        "event": "AddToCart",
+        "message": "Event tracked" if result.get("success") else "Event tracking failed",
+        "details": result
+    }
+
+@app.post("/api/track/scroll")
+async def track_scroll(track_data: TrackViewRequest, request: Request):
+    """
+    Track custom Scroll/Engaged event - when user scrolls for first time
+    """
+    logger.info("Tracking Scroll/Engaged event")
+    
+    user_data = {
+        "source_url": track_data.source_url or str(request.url),
+        "user_agent": track_data.user_agent or request.headers.get("user-agent", ""),
+        "client_ip": request.client.host,
+        "fbp": track_data.fbp,
+        "fbc": track_data.fbc,
+        "external_id": track_data.external_id,
+        "event_id": track_data.event_id,
+        "country": "it"
+    }
+    
+    event_data = {
+        "content_name": "Trico Rosmarinus Landing Page",
+        "content_category": "Hair Care"
+    }
+    
+    # Using custom event name for scroll engagement
+    result = send_facebook_event("PageEngagement", event_data, user_data, request)
+    
+    return {
+        "success": result.get("success", False),
+        "event": "PageEngagement",
+        "message": "Event tracked" if result.get("success") else "Event tracking failed",
+        "details": result
+    }
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)

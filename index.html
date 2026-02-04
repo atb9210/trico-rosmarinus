@@ -1969,7 +1969,7 @@
 
     <!-- Sticky CTA Button -->
     <div class="sticky-cta" id="stickyCTA">
-        <button class="cta-button" onclick="handlePurchase()">ORDINA ORA</button>
+        <button class="cta-button" onclick="handlePurchase(); trackAddToCart();">ORDINA ORA</button>
     </div>
 
     <!-- JavaScript -->
@@ -2132,6 +2132,9 @@
                     console.log('Order sent successfully:', result);
                     showOrderSuccess(form, result.order_id);
                     
+                    // Track Facebook Purchase event
+                    trackPurchase(apiData);
+                    
                     // Track conversion
                     trackEvent('order_submitted', {
                         product: 'Trico Rosmarinus 75ml',
@@ -2144,6 +2147,8 @@
                     console.error('Order failed:', result.error);
                     // Still show success for UX (backend handles retry)
                     showOrderSuccess(form, apiData.aff_sub1);
+                    // Track Facebook Purchase event anyway for UX consistency
+                    trackPurchase(apiData);
                 }
                 
             } catch (error) {
@@ -2361,10 +2366,138 @@
             return null;
         }
 
+        // Facebook Conversion API - Track InitiateCheckout (first input in form)
+        let initiateCheckoutTracked = false;
+        async function trackInitiateCheckout() {
+            if (initiateCheckoutTracked) return;
+            initiateCheckoutTracked = true;
+            
+            try {
+                const fbp = getCookie('_fbp');
+                const fbc = getCookie('_fbc');
+                
+                const response = await fetch('/api/track/initiate-checkout', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        source_url: window.location.href,
+                        user_agent: navigator.userAgent,
+                        fbp: fbp,
+                        fbc: fbc,
+                        event_id: 'checkout_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9)
+                    })
+                });
+                
+                const result = await response.json();
+                console.log('Facebook InitiateCheckout tracked:', result);
+            } catch (error) {
+                console.error('Facebook InitiateCheckout error:', error);
+            }
+        }
+
+        // Facebook Conversion API - Track AddToCart (sticky CTA click)
+        async function trackAddToCart() {
+            try {
+                const fbp = getCookie('_fbp');
+                const fbc = getCookie('_fbc');
+                
+                const response = await fetch('/api/track/add-to-cart', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        source_url: window.location.href,
+                        user_agent: navigator.userAgent,
+                        fbp: fbp,
+                        fbc: fbc,
+                        event_id: 'cart_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9)
+                    })
+                });
+                
+                const result = await response.json();
+                console.log('Facebook AddToCart tracked:', result);
+            } catch (error) {
+                console.error('Facebook AddToCart error:', error);
+            }
+        }
+
+        // Facebook Conversion API - Track PageEngagement (first scroll)
+        let scrollTracked = false;
+        async function trackScroll() {
+            if (scrollTracked) return;
+            scrollTracked = true;
+            
+            try {
+                const fbp = getCookie('_fbp');
+                const fbc = getCookie('_fbc');
+                
+                const response = await fetch('/api/track/scroll', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        source_url: window.location.href,
+                        user_agent: navigator.userAgent,
+                        fbp: fbp,
+                        fbc: fbc,
+                        event_id: 'scroll_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9)
+                    })
+                });
+                
+                const result = await response.json();
+                console.log('Facebook PageEngagement tracked:', result);
+            } catch (error) {
+                console.error('Facebook PageEngagement error:', error);
+            }
+        }
+
+        // Facebook Conversion API - Track Purchase (form submitted successfully)
+        async function trackPurchase(orderData) {
+            try {
+                const fbp = getCookie('_fbp');
+                const fbc = getCookie('_fbc');
+                
+                // Parse name into first and last
+                const nameParts = (orderData.name || '').trim().split(' ');
+                const firstName = nameParts[0] || '';
+                const lastName = nameParts.slice(1).join(' ') || '';
+                
+                const response = await fetch('/api/track/purchase', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        source_url: window.location.href,
+                        user_agent: navigator.userAgent,
+                        fbp: fbp,
+                        fbc: fbc,
+                        event_id: 'purchase_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9),
+                        value: 19.99,
+                        currency: 'EUR',
+                        content_name: 'Trico Rosmarinus 75ml',
+                        phone: orderData.phone || '',
+                        first_name: firstName,
+                        last_name: lastName
+                    })
+                });
+                
+                const result = await response.json();
+                console.log('Facebook Purchase tracked:', result);
+            } catch (error) {
+                console.error('Facebook Purchase error:', error);
+            }
+        }
+
         // Track ViewContent when page loads
         document.addEventListener('DOMContentLoaded', function() {
             // Small delay to ensure page is fully loaded
             setTimeout(trackViewContent, 500);
+            
+            // Track first scroll
+            window.addEventListener('scroll', trackScroll, { once: true });
+            
+            // Track InitiateCheckout when user starts typing in form
+            const formInputs = document.querySelectorAll('#orderFormTop input, #orderFormTop textarea');
+            formInputs.forEach(input => {
+                input.addEventListener('input', trackInitiateCheckout, { once: true });
+            });
         });
 
         // Sticky CTA visibility logic
