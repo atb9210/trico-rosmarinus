@@ -23,7 +23,6 @@ LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")
 # Facebook Conversion API
 FB_PIXEL_ID = os.getenv("FB_PIXEL_ID", "2095934291260128")
 FB_ACCESS_TOKEN = os.getenv("FB_ACCESS_TOKEN", "EAAWzrJVNYx0BQr2wVNTXZB7E8YW0Sj2o9opMDcePaBAPkVLncJ55iyZC3Se74me2OGo3DhpGMfUCHHaYzeNefeHTsbsRYcJZBAzbVI6lQUhq9gZC3MuQkpP31NQyAJzKo6vp4tTqhDld9JuVWjsGgIcQcF0CLUZB1p1NquUZBnZCI0Pcl2l5CnDz9ccZAHoDcwZDZD")
-FB_TEST_EVENT_CODE = os.getenv("FB_TEST_EVENT_CODE", "TEST39807")
 
 class OrderRequest(BaseModel):
     name: str
@@ -226,9 +225,7 @@ def send_facebook_event(event_name: str, event_data: dict, user_data: dict, requ
             "access_token": FB_ACCESS_TOKEN
         }
         
-        # Add test event code if in test mode
-        if FB_TEST_EVENT_CODE:
-            payload["test_event_code"] = FB_TEST_EVENT_CODE
+        # No test event code - production mode
         
         logger.info(f"Sending Facebook event: {event_name}")
         logger.info(f"Facebook payload: {payload}")
