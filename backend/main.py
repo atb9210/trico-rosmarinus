@@ -249,28 +249,30 @@ def send_facebook_event(event_name: str, event_data: dict, user_data: dict, requ
         return {"success": False, "error": str(e)}
 
 # Track Request Models
+from typing import Optional
+
 class TrackViewRequest(BaseModel):
-    source_url: str = None
-    user_agent: str = None
-    fbp: str = None  # Facebook browser pixel cookie
-    fbc: str = None  # Facebook click ID cookie
-    external_id: str = None
-    event_id: str = None
+    source_url: Optional[str] = None
+    user_agent: Optional[str] = None
+    fbp: Optional[str] = None  # Facebook browser pixel cookie
+    fbc: Optional[str] = None  # Facebook click ID cookie
+    external_id: Optional[str] = None
+    event_id: Optional[str] = None
 
 class TrackPurchaseRequest(BaseModel):
-    source_url: str = None
-    user_agent: str = None
-    fbp: str = None
-    fbc: str = None
-    external_id: str = None
-    event_id: str = None
+    source_url: Optional[str] = None
+    user_agent: Optional[str] = None
+    fbp: Optional[str] = None
+    fbc: Optional[str] = None
+    external_id: Optional[str] = None
+    event_id: Optional[str] = None
     value: float = 19.99
     currency: str = "EUR"
     content_name: str = "Trico Rosmarinus 75ml"
-    content_ids: list = None
-    phone: str = None
-    first_name: str = None
-    last_name: str = None
+    content_ids: Optional[list] = None
+    phone: Optional[str] = None
+    first_name: Optional[str] = None
+    last_name: Optional[str] = None
 
 @app.post("/api/track/view")
 async def track_view_content(track_data: TrackViewRequest, request: Request):
