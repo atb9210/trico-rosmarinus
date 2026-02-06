@@ -282,7 +282,6 @@ async def track_view_content(track_data: TrackViewRequest, request: Request):
     user_data = {
         "source_url": track_data.source_url or str(request.url),
         "user_agent": track_data.user_agent or request.headers.get("user-agent", ""),
-        "client_ip": request.client.host,
         "fbp": track_data.fbp,
         "fbc": track_data.fbc,
         "external_id": track_data.external_id,
@@ -320,7 +319,6 @@ async def track_purchase(track_data: TrackPurchaseRequest, request: Request):
     user_data = {
         "source_url": track_data.source_url or str(request.url),
         "user_agent": track_data.user_agent or request.headers.get("user-agent", ""),
-        "client_ip": request.client.host,
         "fbp": track_data.fbp,
         "fbc": track_data.fbc,
         "external_id": track_data.external_id,
@@ -369,7 +367,6 @@ async def track_initiate_checkout(track_data: TrackViewRequest, request: Request
     user_data = {
         "source_url": track_data.source_url or str(request.url),
         "user_agent": track_data.user_agent or request.headers.get("user-agent", ""),
-        "client_ip": request.client.host,
         "fbp": track_data.fbp,
         "fbc": track_data.fbc,
         "external_id": track_data.external_id,
@@ -403,7 +400,6 @@ async def track_add_to_cart(track_data: TrackViewRequest, request: Request):
     user_data = {
         "source_url": track_data.source_url or str(request.url),
         "user_agent": track_data.user_agent or request.headers.get("user-agent", ""),
-        "client_ip": request.client.host,
         "fbp": track_data.fbp,
         "fbc": track_data.fbc,
         "external_id": track_data.external_id,
@@ -436,7 +432,6 @@ async def track_scroll(track_data: TrackViewRequest, request: Request):
     user_data = {
         "source_url": track_data.source_url or str(request.url),
         "user_agent": track_data.user_agent or request.headers.get("user-agent", ""),
-        "client_ip": request.client.host,
         "fbp": track_data.fbp,
         "fbc": track_data.fbc,
         "external_id": track_data.external_id,
