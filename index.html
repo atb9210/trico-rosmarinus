@@ -2354,7 +2354,7 @@
             try {
                 const eventId = 'view_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
                 const fbp = getCookie('_fbp');
-                const fbc = getCookie('_fbc');
+                const fbc = getFbc();
                 
                 // Layer 3: Pixel Standard (dedup via eventID)
                 safeFbq('track', 'ViewContent', {
@@ -2433,6 +2433,15 @@
         // Initialize cookies immediately
         initFacebookCookies();
 
+        // Helper: get fbc with fallback to fbclid from URL
+        function getFbc() {
+            const cookie = getCookie('_fbc');
+            if (cookie) return cookie;
+            const fbclid = new URLSearchParams(window.location.search).get('fbclid');
+            if (fbclid) return 'fb.1.' + Date.now() + '.' + fbclid;
+            return null;
+        }
+
         // Helper: safely call fbq (does nothing if Pixel is blocked)
         function safeFbq() {
             if (typeof fbq === 'function') {
@@ -2449,7 +2458,7 @@
             try {
                 const eventId = 'checkout_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
                 const fbp = getCookie('_fbp');
-                const fbc = getCookie('_fbc');
+                const fbc = getFbc();
                 
                 // Layer 3: Pixel Standard (dedup via eventID)
                 safeFbq('track', 'InitiateCheckout', {
@@ -2484,7 +2493,7 @@
             try {
                 const eventId = 'cart_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
                 const fbp = getCookie('_fbp');
-                const fbc = getCookie('_fbc');
+                const fbc = getFbc();
                 
                 // Layer 3: Pixel Standard (dedup via eventID)
                 safeFbq('track', 'AddToCart', {
@@ -2523,7 +2532,7 @@
             
             try {
                 const fbp = getCookie('_fbp');
-                const fbc = getCookie('_fbc');
+                const fbc = getFbc();
                 
                 const response = await fetch('/api/track/scroll', {
                     method: 'POST',
@@ -2549,7 +2558,7 @@
             try {
                 const eventId = 'purchase_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
                 const fbp = getCookie('_fbp');
-                const fbc = getCookie('_fbc');
+                const fbc = getFbc();
                 
                 // Parse name into first and last
                 const nameParts = (orderData.name || '').trim().split(' ');
