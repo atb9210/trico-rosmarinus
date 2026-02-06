@@ -2531,9 +2531,17 @@
             scrollTracked = true;
             
             try {
+                const eventId = 'scroll_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
                 const fbp = getCookie('_fbp');
                 const fbc = getFbc();
                 
+                // Layer 3: Pixel Standard (dedup via eventID)
+                safeFbq('track', 'Search', {
+                    content_name: 'Trico Rosmarinus Landing Page',
+                    content_category: 'Hair Care'
+                }, {eventID: eventId});
+                
+                // Layer 2: CAPI (server-side)
                 const response = await fetch('/api/track/scroll', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -2542,7 +2550,7 @@
                         user_agent: navigator.userAgent,
                         fbp: fbp,
                         fbc: fbc,
-                        event_id: 'scroll_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9)
+                        event_id: eventId
                     })
                 });
                 
