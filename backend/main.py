@@ -444,12 +444,12 @@ async def track_scroll(track_data: TrackViewRequest, request: Request):
         "content_category": "Hair Care"
     }
     
-    # Using custom event name for scroll engagement
-    result = send_facebook_event("PageEngagement", event_data, user_data, request)
+    # Using standard Facebook Search event for scroll engagement
+    result = send_facebook_event("Search", event_data, user_data, request)
     
     return {
         "success": result.get("success", False),
-        "event": "PageEngagement",
+        "event": "Search",
         "message": "Event tracked" if result.get("success") else "Event tracking failed",
         "details": result
     }

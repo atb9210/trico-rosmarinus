@@ -2524,7 +2524,7 @@
             }
         }
 
-        // Facebook Conversion API - Track PageEngagement (first scroll)
+        // Facebook Conversion API - Track Search (first scroll)
         let scrollTracked = false;
         async function trackScroll() {
             if (scrollTracked) return;
@@ -2547,9 +2547,9 @@
                 });
                 
                 const result = await response.json();
-                console.log('Facebook PageEngagement tracked:', result);
+                console.log('Facebook Search tracked:', result);
             } catch (error) {
-                console.error('Facebook PageEngagement error:', error);
+                console.error('Facebook Search error:', error);
             }
         }
 
