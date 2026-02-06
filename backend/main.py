@@ -186,8 +186,9 @@ def send_facebook_event(event_name: str, event_data: dict, user_data: dict, requ
         if user_data.get("country"):
             hashed_user_data["country"] = [hash_data(user_data["country"])]
         
-        # Add client info
-        hashed_user_data["client_ip_address"] = user_data.get("client_ip") or request.client.host
+        # Add client info - use real IP from proxy headers (nginx + Traefik)
+        real_ip = request.headers.get("X-Forwarded-For", "").split(",")[0].strip() or request.headers.get("X-Real-IP", "") or request.client.host
+        hashed_user_data["client_ip_address"] = real_ip
         hashed_user_data["client_user_agent"] = user_data.get("user_agent") or request.headers.get("user-agent", "")
         
         # External ID for deduplication

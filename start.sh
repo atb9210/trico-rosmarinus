@@ -3,7 +3,7 @@ echo "Starting Trico Rosmarinus API..."
 
 # Start FastAPI backend in background
 cd /app
-uvicorn main:app --host 0.0.0.0 --port 8000 &
+uvicorn main:app --host 0.0.0.0 --port 8000 --proxy-headers --forwarded-allow-ips='*' &
 
 # Wait for backend to start
 sleep 3
