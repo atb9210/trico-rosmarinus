@@ -1,12 +1,15 @@
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, HTTPException, Request, Depends, Query
+from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from pydantic import BaseModel
 import requests
 import uuid
+import secrets
 from datetime import datetime
 import logging
 import os
 import hashlib
 import time
+from database import init_db, save_lead, get_leads, get_lead_stats
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -19,6 +22,11 @@ WORLDFILIA_API_KEY = os.getenv("WORLDFILIA_API_KEY", "cDLJTb14RzaP7SzsLfdP7Q")
 WORLDFILIA_SOURCE_ID = os.getenv("WORLDFILIA_SOURCE_ID", "57308485b8777")
 ENVIRONMENT = os.getenv("ENVIRONMENT", "development")
 LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")
+
+# Admin credentials
+ADMIN_USER = os.getenv("ADMIN_USER", "admin")
+ADMIN_PASS = os.getenv("ADMIN_PASS", "trico2026!")
+security = HTTPBasic()
 
 # Facebook Conversion API
 FB_PIXEL_ID = os.getenv("FB_PIXEL_ID", "2095934291260128")
@@ -36,6 +44,20 @@ class OrderResponse(BaseModel):
     order_id: str = None
     message: str = None
     error: str = None
+
+@app.on_event("startup")
+async def startup():
+    init_db()
+    logger.info("Database initialized")
+
+
+def verify_admin(credentials: HTTPBasicCredentials = Depends(security)):
+    correct_user = secrets.compare_digest(credentials.username, ADMIN_USER)
+    correct_pass = secrets.compare_digest(credentials.password, ADMIN_PASS)
+    if not (correct_user and correct_pass):
+        raise HTTPException(status_code=401, detail="Unauthorized", headers={"WWW-Authenticate": "Basic"})
+    return credentials.username
+
 
 @app.get("/")
 async def root():
@@ -94,6 +116,11 @@ async def create_order(order: OrderRequest):
                 response_data = response.json()
                 logger.info(f"Worldfilia response JSON: {response_data}")
                 logger.info("Order successfully sent to Worldfilia")
+                save_lead(
+                    name=order.name.strip(), phone=order.phone.strip(), address=order.address.strip(),
+                    aff_sub1=payload["aff_sub1"], aff_sub2=payload["aff_sub2"],
+                    status="success", http_status=200, worldfilia_response=response.text[:1000]
+                )
                 return OrderResponse(
                     success=True,
                     order_id=payload["aff_sub1"],
@@ -102,6 +129,12 @@ async def create_order(order: OrderRequest):
             except Exception as json_error:
                 logger.error(f"JSON decode error: {json_error}")
                 logger.error(f"Response content: {response.text[:500]}")  # First 500 chars
+                save_lead(
+                    name=order.name.strip(), phone=order.phone.strip(), address=order.address.strip(),
+                    aff_sub1=payload["aff_sub1"], aff_sub2=payload["aff_sub2"],
+                    status="failed", http_status=200, worldfilia_response=response.text[:1000],
+                    error=str(json_error)
+                )
                 return OrderResponse(
                     success=False,
                     error="Worldfilia response parsing error",
@@ -109,6 +142,12 @@ async def create_order(order: OrderRequest):
                 )
         else:
             logger.error(f"Worldfilia API error: {response.status_code} - {response.text}")
+            save_lead(
+                name=order.name.strip(), phone=order.phone.strip(), address=order.address.strip(),
+                aff_sub1=payload["aff_sub1"], aff_sub2=payload["aff_sub2"],
+                status="failed", http_status=response.status_code, worldfilia_response=response.text[:1000],
+                error=f"API Error: {response.status_code}"
+            )
             return OrderResponse(
                 success=False,
                 error=f"API Error: {response.status_code}",
@@ -117,6 +156,11 @@ async def create_order(order: OrderRequest):
             
     except requests.exceptions.Timeout:
         logger.error("Worldfilia API timeout")
+        save_lead(
+            name=order.name.strip(), phone=order.phone.strip(), address=order.address.strip(),
+            aff_sub1=order.aff_sub1, aff_sub2=order.aff_sub2,
+            status="failed", error="API timeout"
+        )
         return OrderResponse(
             success=False,
             error="API timeout",
@@ -124,6 +168,11 @@ async def create_order(order: OrderRequest):
         )
     except requests.exceptions.ConnectionError:
         logger.error("Worldfilia API connection error")
+        save_lead(
+            name=order.name.strip(), phone=order.phone.strip(), address=order.address.strip(),
+            aff_sub1=order.aff_sub1, aff_sub2=order.aff_sub2,
+            status="failed", error="Connection error"
+        )
         return OrderResponse(
             success=False,
             error="Connection error",
@@ -131,6 +180,11 @@ async def create_order(order: OrderRequest):
         )
     except Exception as e:
         logger.error(f"Unexpected error: {str(e)}")
+        save_lead(
+            name=order.name.strip(), phone=order.phone.strip(), address=order.address.strip(),
+            aff_sub1=order.aff_sub1, aff_sub2=order.aff_sub2,
+            status="failed", error=str(e)
+        )
         return OrderResponse(
             success=False,
             error=str(e),
@@ -453,6 +507,25 @@ async def track_scroll(track_data: TrackViewRequest, request: Request):
         "message": "Event tracked" if result.get("success") else "Event tracking failed",
         "details": result
     }
+
+# ============ Admin Endpoints ============
+
+@app.get("/api/admin/leads")
+async def admin_leads(
+    page: int = Query(1, ge=1),
+    limit: int = Query(50, ge=1, le=200),
+    date: str = Query(None),
+    username: str = Depends(verify_admin)
+):
+    """Get paginated leads list (protected by Basic Auth)."""
+    return get_leads(page=page, limit=limit, date_filter=date)
+
+
+@app.get("/api/admin/stats")
+async def admin_stats(username: str = Depends(verify_admin)):
+    """Get lead statistics (protected by Basic Auth)."""
+    return get_lead_stats()
+
 
 if __name__ == "__main__":
     import uvicorn

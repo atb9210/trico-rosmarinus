@@ -23,9 +23,18 @@ ENV WORLDFILIA_SOURCE_ID=57308485b8777
 ENV ENVIRONMENT=production
 ENV LOG_LEVEL=INFO
 
+# Admin credentials
+ENV ADMIN_USER=admin
+ENV ADMIN_PASS=trico2026!
+ENV DB_PATH=/app/data/trico.db
+
 # Facebook Conversion API
 ENV FB_PIXEL_ID=2095934291260128
 ENV FB_ACCESS_TOKEN=EAAWzrJVNYx0BQr2wVNTXZB7E8YW0Sj2o9opMDcePaBAPkVLncJ55iyZC3Se74me2OGo3DhpGMfUCHHaYzeNefeHTsbsRYcJZBAzbVI6lQUhq9gZC3MuQkpP31NQyAJzKo6vp4tTqhDld9JuVWjsGgIcQcF0CLUZB1p1NquUZBnZCI0Pcl2l5CnDz9ccZAHoDcwZDZD
+
+# Create data directory for SQLite
+RUN mkdir -p /app/data
+VOLUME /app/data
 
 # Copy frontend files to nginx directory
 COPY . /var/www/html/
@@ -55,6 +64,13 @@ RUN echo 'server { \
         proxy_connect_timeout 30s; \
         proxy_send_timeout 30s; \
         proxy_read_timeout 30s; \
+    } \
+    \
+    # Admin panel \
+    location /admin { \
+        alias /var/www/html; \
+        try_files /admin.html =404; \
+        add_header Cache-Control "no-cache, no-store, must-revalidate"; \
     } \
     \
     # Health check endpoint \
