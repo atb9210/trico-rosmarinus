@@ -183,6 +183,81 @@
             text-decoration: line-through;
         }
 
+        /* 2x Offer Styles */
+        .offer-duo-card {
+            background: linear-gradient(135deg, #f0fdf4, #ecfdf5);
+            border: 2px solid var(--primary);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .offer-duo-card .offer-tag {
+            position: absolute;
+            top: 12px;
+            right: -30px;
+            background: #E74C3C;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 40px;
+            transform: rotate(35deg);
+            letter-spacing: 0.5px;
+        }
+
+        .offer-duo-card .duo-images {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .offer-duo-card .duo-images img {
+            width: 90px;
+            height: auto;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+        }
+
+        .offer-duo-card .duo-images .plus-sign {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .offer-duo-card .duo-label {
+            text-align: center;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .offer-duo-card .duo-label span {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .offer-badge-strip {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .per-unit-price {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
         .hero-form-section .form-group {
             margin-bottom: 16px;
         }
@@ -1515,7 +1590,7 @@
             <div class="hero-content">
                 <div class="hero-text">
                     <h1>Ritrova la Forza di una Chioma Folta e Resistente con Trico Rosmarinus</h1>
-                    <p class="sub-headline">La sinergia naturale di Rosmarino e Fieno Greco incontra la scienza dell'Arginina. Una lozione "urto" progettata per risvegliare i tuoi bulbi piliferi e fermare la fragilità.</p>
+                    <p class="sub-headline">La sinergia naturale di Rosmarino e Fieno Greco incontra la scienza dell'Arginina. <strong>Offerta speciale: 2 confezioni</strong> per un trattamento completo che dura nel tempo.</p>
                     
                     <div class="hero-image-placeholder">
                         <img src="/images/hero-shot-3d.jpg" alt="Trico Rosmarinus Hero Shot" class="hero-image" width="400" height="400" loading="lazy" decoding="async">
@@ -1530,10 +1605,22 @@
                 </div>
 
                 <div class="hero-form-section">
+                    <div class="offer-duo-card">
+                        <div class="offer-tag">RISPARMIA</div>
+                        <div class="duo-images">
+                            <img src="/images/2891_700b18351f57d63ab494648e143dad0b_1725444657.png" alt="Trico Rosmarinus 75ml">
+                            <span class="plus-sign">+</span>
+                            <img src="/images/2891_700b18351f57d63ab494648e143dad0b_1725444657.png" alt="Trico Rosmarinus 75ml">
+                        </div>
+                        <div class="duo-label"><span>2x</span> Trico Rosmarinus 75ml</div>
+                    </div>
+
                     <div class="hero-price-badge">
+                        <div class="offer-badge-strip">OFFERTA DOPPIA — 2 CONFEZIONI</div>
                         <div class="discount">-37% SCONTO LIMITATO</div>
                         <div class="price">€49,00</div>
                         <div class="original">€78,00</div>
+                        <div class="per-unit-price">€24,50 a confezione</div>
                     </div>
                     
                     <form class="order-form order-form-top" id="orderFormTop" onsubmit="handleOrderSubmit(event)">
@@ -1555,7 +1642,7 @@
                             <div class="form-error">Inserisci il tuo indirizzo completo</div>
                         </div>
                         
-                        <button type="submit" class="form-submit">ORDINA ORA - SPEDIZIONE GRATUITA</button>
+                        <button type="submit" class="form-submit">ORDINA 2 CONFEZIONI - SPEDIZIONE GRATUITA</button>
                     </form>
                     
                     <div class="payment-note">
@@ -2208,7 +2295,7 @@
             successDiv.innerHTML = `
                 <i class="fas fa-check-circle"></i>
                 <h3>Ordine Confermato!</h3>
-                <p>Grazie per il tuo ordine. Riceverai Trico Rosmarinus 2x75ml entro 24/48 ore con pagamento alla consegna.</p>
+                <p>Grazie per il tuo ordine. Riceverai le tue 2 confezioni di Trico Rosmarinus entro 24/48 ore con pagamento alla consegna.</p>
                 <p style="font-size: 0.85rem; opacity: 0.7; margin-top: 12px;">
                     <strong>Ordine #${orderId ? orderId.substring(0, 8) : 'CONFIRMED'}</strong>
                 </p>
