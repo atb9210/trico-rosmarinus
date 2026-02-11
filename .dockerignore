@@ -34,3 +34,6 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Lead management scripts (sensitive data)
+doppie/

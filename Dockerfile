@@ -66,6 +66,14 @@ RUN echo 'server { \
         proxy_read_timeout 30s; \
     } \
     \
+    # Trico 2x49 landing page \
+    location /trico2x/ { \
+        alias /var/www/html/trico2x/; \
+        index index.html; \
+        try_files $uri $uri/ /trico2x/index.html; \
+        add_header Cache-Control "no-cache, no-store, must-revalidate"; \
+    } \
+    \
     # Admin panel \
     location /admin { \
         alias /var/www/html; \

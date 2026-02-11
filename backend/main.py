@@ -527,6 +527,81 @@ async def admin_stats(username: str = Depends(verify_admin)):
     return get_lead_stats()
 
 
+# ============ 2x49 Offer Endpoint ============
+
+@app.post("/api/order/2x", response_model=OrderResponse)
+async def create_order_2x(order: OrderRequest):
+    """
+    Create order for 2x49 offer and send to Worldfilia API.
+    Uses different Worldfilia product URL. Does NOT touch existing /api/order.
+    """
+    try:
+        logger.info(f"Received 2x49 order request: {order.name}")
+        
+        worldfilia_url = "https://network.worldfilia.net/manager/inventory/buy/ntm_tricorosmarinus_2x49.json"
+        
+        payload = {
+            "source_id": WORLDFILIA_SOURCE_ID,
+            "aff_sub1": order.aff_sub1 or str(uuid.uuid4()),
+            "aff_sub2": order.aff_sub2 or "tricosolutions_2x",
+            "name": order.name.strip(),
+            "phone": order.phone.strip(),
+            "address": order.address.strip()
+        }
+        
+        logger.info(f"Sending 2x49 to Worldfilia: {payload}")
+        
+        response = requests.post(
+            f"{worldfilia_url}?api_key={WORLDFILIA_API_KEY}",
+            json=payload,
+            timeout=30,
+            headers={
+                "Content-Type": "application/json",
+                "User-Agent": "TricoRosmarinus-API/1.0"
+            }
+        )
+        
+        logger.info(f"Worldfilia 2x49 response: {response.status_code} - {response.text}")
+        
+        if response.status_code == 200:
+            try:
+                response_data = response.json()
+                save_lead(
+                    name=order.name.strip(), phone=order.phone.strip(), address=order.address.strip(),
+                    aff_sub1=payload["aff_sub1"], aff_sub2=payload["aff_sub2"],
+                    status="success", http_status=200, worldfilia_response=response.text[:1000]
+                )
+                return OrderResponse(success=True, order_id=payload["aff_sub1"], message="Order 2x49 processed successfully")
+            except Exception as json_error:
+                save_lead(
+                    name=order.name.strip(), phone=order.phone.strip(), address=order.address.strip(),
+                    aff_sub1=payload["aff_sub1"], aff_sub2=payload["aff_sub2"],
+                    status="failed", http_status=200, worldfilia_response=response.text[:1000], error=str(json_error)
+                )
+                return OrderResponse(success=False, error="Worldfilia response parsing error", message="Order processing failed")
+        else:
+            save_lead(
+                name=order.name.strip(), phone=order.phone.strip(), address=order.address.strip(),
+                aff_sub1=payload["aff_sub1"], aff_sub2=payload["aff_sub2"],
+                status="failed", http_status=response.status_code, worldfilia_response=response.text[:1000],
+                error=f"API Error: {response.status_code}"
+            )
+            return OrderResponse(success=False, error=f"API Error: {response.status_code}", message="Order processing failed")
+            
+    except requests.exceptions.Timeout:
+        save_lead(name=order.name.strip(), phone=order.phone.strip(), address=order.address.strip(),
+                  aff_sub1=order.aff_sub1, aff_sub2=order.aff_sub2, status="failed", error="API timeout")
+        return OrderResponse(success=False, error="API timeout", message="Order processing timeout")
+    except requests.exceptions.ConnectionError:
+        save_lead(name=order.name.strip(), phone=order.phone.strip(), address=order.address.strip(),
+                  aff_sub1=order.aff_sub1, aff_sub2=order.aff_sub2, status="failed", error="Connection error")
+        return OrderResponse(success=False, error="Connection error", message="Service temporarily unavailable")
+    except Exception as e:
+        save_lead(name=order.name.strip(), phone=order.phone.strip(), address=order.address.strip(),
+                  aff_sub1=order.aff_sub1, aff_sub2=order.aff_sub2, status="failed", error=str(e))
+        return OrderResponse(success=False, error=str(e), message="Order processing failed")
+
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
